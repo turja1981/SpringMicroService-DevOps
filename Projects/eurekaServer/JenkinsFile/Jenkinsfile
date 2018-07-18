@@ -55,21 +55,21 @@ pipeline {
         stage ('Eureka Run') {
         	steps {
         	script {
-            	docker.image("turja/discovery-service:${env.BUILD_ID}").run('-p 8761:8761 -h discovery --name discovery')
+            	docker.image("turja/discovery-service:${env.BUILD_ID}").run('-p 8761:8761 -h discovery --name discovery_${env.BUILD_ID}')
             	}
             }
         }
         stage ('Add Payment Run') {
         	steps {
         	script {
-            	docker.image("turja/add-payment-service:${env.BUILD_ID}").run('-p 8097:8097 -h addPayment --name addPayment')
+            	docker.image("turja/add-payment-service:${env.BUILD_ID}").run('-p 8097:8097 -h addPayment --name addPayment_${env.BUILD_ID}')
             	}
             }
         }
         stage ('Show Payment Run') {
         	steps {
         	script {
-            	docker.image("turja/show-payment-service:${env.BUILD_ID}").run('-p 8098:8098 -h showPayment --name showPayment')
+            	docker.image("turja/show-payment-service:${env.BUILD_ID}").run('-p 8098:8098 -h showPayment --name showPayment_${env.BUILD_ID}')
             	}
             }
         }                       
