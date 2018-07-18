@@ -25,7 +25,7 @@ pipeline {
         stage('Image') {
 	        steps {
 	        script {
-	            dir ('dockerFile') {
+	            dir ('Projects/eurekaServer/dockerFile') {
 	                def app = docker.build("turja/discovery-service:${env.version}")
 	            }
 	            }
