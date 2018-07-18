@@ -20,13 +20,17 @@ pipeline {
 		}
 		
         stage('Image') {
-            dir ('eurekaServer/dockerFile') {
-                def app = docker.build("turja/discovery-service:${env.version}")
-                app.push()
+	        steps {
+	            dir ('eurekaServer/dockerFile') {
+	                def app = docker.build("turja/discovery-service:${env.version}")
+	                app.push()
+	            }
             }
         }
         stage ('Run') {
-            docker.image("turja/discovery-service:${env.version}").run('-p 8761:8761 -h discovery --name discovery')
+        	steps {
+            	docker.image("turja/discovery-service:${env.version}").run('-p 8761:8761 -h discovery --name discovery')
+            }
         }
                
 	}
