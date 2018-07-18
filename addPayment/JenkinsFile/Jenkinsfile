@@ -1,0 +1,59 @@
+pipeline {
+	agent any
+	tools{ maven 'mvn-3.3.9' }
+	stages {
+		stage ('Initialize') {
+			steps { sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                ''' }
+		}
+		stage('Checkout SCM') {
+			steps { checkout scm }
+		}
+
+		stage('Code Analysis && Build') {
+			steps {
+				withSonarQubeEnv('sonarQB') {
+					sh "mvn clean install -Dmaven.test.skip=true "
+					sh 'sleep 10'
+				}
+			}
+		}
+		stage('Build Docker image') {
+			/* This builds the actual image; synonymous to
+			 * docker build on the command line */
+			steps {
+				script {
+
+					sh "cp target/*.jar /home/turja/DevOps/SampleApp/dockerfile/"
+
+					dir ("/home/turja/DevOps/SampleApp/dockerfile" ) {
+
+						app = docker.build("turja/devops_poc" )
+						//	app.inside { sh 'mvn test' }
+					}
+				}
+			}
+		}
+		stage ('Run Docker Image') {
+			steps {
+				script {
+					dapp = docker.image("turja/devops_poc").run("-p 8080:8080 --rm --name dev-image_${env.BUILD_ID}")
+				}
+			}
+		}
+		stage('Unit & QA Testing') {
+			steps {
+				script{ sh "mvn test " }
+			}
+			post {
+				always {
+					junit 'target/surefire-reports/*.xml'
+					sh "docker stop dev-image_${env.BUILD_ID}"
+				}
+			}
+		}
+	}
+}
+
