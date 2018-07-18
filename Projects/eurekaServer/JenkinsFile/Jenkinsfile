@@ -56,20 +56,23 @@ pipeline {
         	steps {
         	script {
             	docker.image("turja/discovery-service:${env.BUILD_ID}").run('-p 8761:8761 -h discovery --name discovery')
+            	sh 'sleep 10'
             	}
             }
         }
         stage ('Add Payment Run') {
         	steps {
         	script {
-            	docker.image("turja/add-payment-service:${env.BUILD_ID}").run('-p 8097:8097 -h addPayment --name addPayment --link discovery')
+            	docker.image("turja/add-payment-service:${env.BUILD_ID}").run('-p 3333:3333 -h addPayment --name addPayment --link discovery')
+            	sh 'sleep 10'
             	}
             }
         }
         stage ('Show Payment Run') {
         	steps {
         	script {
-            	docker.image("turja/show-payment-service:${env.BUILD_ID}").run('-p 8098:8098 -h showPayment --name showPayment --link discovery')
+            	docker.image("turja/show-payment-service:${env.BUILD_ID}").run('-p 4444:4444 -h showPayment --name showPayment --link discovery')
+            	sh 'sleep 10'
             	}
             }
         }                       
