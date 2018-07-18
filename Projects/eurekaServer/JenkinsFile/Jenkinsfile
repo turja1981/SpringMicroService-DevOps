@@ -71,7 +71,7 @@ pipeline {
         stage ('Show Payment Run') {
         	steps {
         	script {
-            	docker.image("turja/show-payment-service:${env.BUILD_ID}").run('-p 4444:4444 -h showPayment --name showPayment --link discovery')
+            	docker.image("turja/show-payment-service:${env.BUILD_ID}").run('-p 3334:3334 -h showPayment --name showPayment --link discovery')
             	sh 'sleep 10'
             	}
             }
