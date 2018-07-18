@@ -62,14 +62,14 @@ pipeline {
         stage ('Add Payment Run') {
         	steps {
         	script {
-            	docker.image("turja/add-payment-service:${env.BUILD_ID}").run('-p 8097:8097 -h addPayment --name addPayment')
+            	docker.image("turja/add-payment-service:${env.BUILD_ID}").run('-p 8097:8097 -h addPayment --name addPayment --link discovery')
             	}
             }
         }
         stage ('Show Payment Run') {
         	steps {
         	script {
-            	docker.image("turja/show-payment-service:${env.BUILD_ID}").run('-p 8098:8098 -h showPayment --name showPayment')
+            	docker.image("turja/show-payment-service:${env.BUILD_ID}").run('-p 8098:8098 -h showPayment --name showPayment --link discovery')
             	}
             }
         }                       
