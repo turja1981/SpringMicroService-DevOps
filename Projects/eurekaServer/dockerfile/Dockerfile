@@ -1,4 +1,4 @@
 FROM openjdk:8-jre-alpine
-ADD target/EurekaServer.jar app.jar
+ADD EurekaServer.jar app.jar
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 EXPOSE 2222
