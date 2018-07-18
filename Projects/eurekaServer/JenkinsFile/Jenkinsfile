@@ -15,7 +15,7 @@ pipeline {
 		stage('Build') {
 			steps {
 				script {
-				dir ('projects/eurekaServer') {
+				dir ('Projects/eurekaServer') {
 					sh "mvn clean install -Dmaven.test.skip=true "
 					}
 				}
