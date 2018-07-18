@@ -13,7 +13,14 @@ eureka:         #tells about the Eureka server details and its refresh time
     lease:
       duration: 5
  
-  
+spring:    
+  application:
+    name: add-payment-service   #current service name to be used by the eureka server
+  datasource:
+    url: jdbc:mysql://localhost:3306/test_db?autoReconnect=true&useSSL=false
+    username: dbuser
+    password: dbuser
+    driver-class-name: com.mysql.jdbc.Driver        
      
 management:
   security:
