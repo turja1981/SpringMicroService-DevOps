@@ -41,7 +41,7 @@ pipeline {
 		        	sh "cp Projects/eurekaServer/target/*.jar Projects/eurekaServer/dockerfile/"
 		        	sh "cp Projects/addPayment/target/*.jar Projects/addPayment/dockerfile/"
 		        	sh "cp Projects/showPayment/target/*.jar Projects/showPayment/dockerfile/"
-		        	sh "cp Projects/showPayment/target/*.jar Projects/paymentwebApp/dockerfile/"
+		        	sh "cp Projects/paymentwebApp/target/*.jar Projects/paymentwebApp/dockerfile/"
 		        	
 		            dir ('Projects/eurekaServer/dockerfile') {
 		                def dicoveryApp = docker.build("turja/discovery-service:${env.BUILD_ID}")
