@@ -23,7 +23,7 @@ app.controller("showController", ['$scope', '$http', '$location', function($scop
 		console.log(response.data);
 	});
 	$scope.editPayment = function(id) {
-		$http.get("http://localhost:8080/payments/" + id).then(
+		$http.get("http://showPayment:8080/payments/" + id).then(
 				function(response) {
 					if (response.data) {
 						console.log(response.data);

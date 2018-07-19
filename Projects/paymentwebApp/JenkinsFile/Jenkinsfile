@@ -1,0 +1,50 @@
+pipeline {
+	agent any
+	tools{ maven 'mvn-3.3.9' }
+	stages {
+		stage ('Initialize') {
+			steps { sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                ''' }
+		}
+		stage('Checkout SCM') {
+			steps { checkout scm }
+		}
+
+		stage('Build') {
+			steps {
+				script {
+
+					dir ('Projects/paymentwebApp') {
+						sh "mvn clean install -Dmaven.test.skip=true "
+					}																			
+				}
+
+			}
+		}
+		
+        stage('Image') {
+	        steps {
+		        script {
+
+		        	sh "cp Projects/paymentwebApp/target/*.jar Projects/paymentwebApp/dockerfile/"
+		        	
+		            dir ('Projects/paymentwebApp/dockerfile') {
+		                def showPaymentApp = docker.build("turja/payment-web-app:${env.BUILD_ID}")
+		            }			            	            		            
+	            }
+	            
+            }
+        }
+    
+        stage ('Payment Web Run') {
+        	steps {
+        	script {
+            	docker.image("turja/payment-web-app:${env.BUILD_ID}").run('-p 3335:3335 -h paymentWeb --name paymentWeb --network  devops_default --dns=172.18.0.7')
+            	}
+            }
+        }        
+	}
+}
+
