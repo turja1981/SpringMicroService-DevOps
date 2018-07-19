@@ -26,7 +26,10 @@ pipeline {
 					}	
 					dir ('Projects/apiGateway') {
 						sh "mvn clean install -Dmaven.test.skip=true "
-					}														
+					}	
+					dir ('Projects/paymentwebApp') {
+						sh "mvn clean install -Dmaven.test.skip=true "
+					}																			
 				}
 
 			}
@@ -38,6 +41,7 @@ pipeline {
 		        	sh "cp Projects/eurekaServer/target/*.jar Projects/eurekaServer/dockerfile/"
 		        	sh "cp Projects/addPayment/target/*.jar Projects/addPayment/dockerfile/"
 		        	sh "cp Projects/showPayment/target/*.jar Projects/showPayment/dockerfile/"
+		        	sh "cp Projects/showPayment/target/*.jar Projects/paymentwebApp/dockerfile/"
 		        	
 		            dir ('Projects/eurekaServer/dockerfile') {
 		                def dicoveryApp = docker.build("turja/discovery-service:${env.BUILD_ID}")
@@ -47,7 +51,10 @@ pipeline {
 		            }
 		            dir ('Projects/showPayment/dockerfile') {
 		                def showPaymentApp = docker.build("turja/show-payment-service:${env.BUILD_ID}")
-		            }		            		            
+		            }	
+		            dir ('Projects/paymentwebApp/dockerfile') {
+		                def showPaymentApp = docker.build("turja/payment-web-app:${env.BUILD_ID}")
+		            }			            	            		            
 	            }
 	            
             }
@@ -68,6 +75,13 @@ pipeline {
             	}
             }
         }
+        stage ('Payment Web Run') {
+        	steps {
+        	script {
+            	docker.image("turja/payment-web-app:${env.BUILD_ID}").run('-p 3335:3335 -h paymentWeb --name paymentWeb --network  devops_default')
+            	}
+            }
+        }        
 	}
 }
 
