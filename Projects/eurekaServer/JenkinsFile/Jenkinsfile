@@ -78,7 +78,7 @@ pipeline {
         stage ('Show Payment Run') {
         	steps {
         	script {
-            	docker.image("turja/show-payment-service:${env.BUILD_ID}").run('-p 3334:3334 -h showPaymentApp --name showPaymentApp --network  devops_default --dns=172.18.0.5')
+            	docker.image("turja/show-payment-service:${env.BUILD_ID}").run('-p 3334:3334 -h showPaymentApp --name showPaymentApp --network  devops_default --dns=172.18.0.6')
             	sh 'sleep 10'
             	}
             }
@@ -86,7 +86,7 @@ pipeline {
         stage ('Payment Web Run') {
         	steps {
         	script {
-            	docker.image("turja/payment-web-app:${env.BUILD_ID}").run('-p 3335:3335 -h paymentWeb --name paymentWeb --network  devops_default --dns=172.18.0.6')
+            	docker.image("turja/payment-web-app:${env.BUILD_ID}").run('-p 3335:3335 -h paymentWeb --name paymentWeb --network  devops_default --dns=172.18.0.7')
             	}
             }
         }        
