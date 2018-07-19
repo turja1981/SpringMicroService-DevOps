@@ -16,38 +16,33 @@ pipeline {
 			steps {
 				script {
 
-					dir ('Projects/showPayment') {
-						sh "mvn clean install -Dmaven.test.skip=true "
-					}	
-
+					dir ('Projects/showPayment') { sh "mvn clean install -Dmaven.test.skip=true " }
+				}
 			}
 		}
-		
-        stage('Image') {
-	        steps {
-		        script {
 
-		        	sh "cp Projects/showPayment/target/*.jar Projects/showPayment/dockerfile/"
-		        	
+		stage('Image') {
+			steps {
+				script {
 
-		            dir ('Projects/showPayment/dockerfile') {
-		                def showPaymentApp = docker.build("turja/show-payment-service:${env.BUILD_ID}")
-		            }	
-		            	            		            
-	            }
-	            
-            }
-        }
+					sh "cp Projects/showPayment/target/*.jar Projects/showPayment/dockerfile/"
 
-        stage ('Show Payment Run') {
-        	steps {
-        	script {
-            	docker.image("turja/show-payment-service:${env.BUILD_ID}").run('-p 3334:3334 -h showPayment --name showPayment --network  devops_default --dns=172.18.0.6')
-            	sh 'sleep 10'
-            	}
-            }
-        }        
-       
+
+					dir ('Projects/showPayment/dockerfile') {
+						def showPaymentApp = docker.build("turja/show-payment-service:${env.BUILD_ID}")
+					}
+				}
+			}
+		}
+
+		stage ('Show Payment Run') {
+			steps {
+				script {
+					docker.image("turja/show-payment-service:${env.BUILD_ID}").run('-p 3334:3334 -h showPayment --name showPayment --network  devops_default --dns=172.18.0.6')
+					sh 'sleep 10'
+				}
+			}
+		}
 	}
 }
 
