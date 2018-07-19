@@ -18,12 +18,12 @@ public class GetPaymentRestController {
 	@Autowired
 	private GetPaymentDao paymentDao =  new GetPaymentDao();
 
-	@GetMapping("/Payments")
+	@GetMapping("/payments")
 	public List<Payment> getAllPayments() {
 		return paymentDao.findAll() ;
 	}
 	
-	@GetMapping("/Payments/{id}")
+	@GetMapping("/payments/{id}")
 	public Payment getPayment(@PathVariable int id) {
 		System.out.println("---id--"+id);
 		return paymentDao.findPaymentById(id) ;
