@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.css" media="screen">
+<link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<script src="main.js"></script>
+
+
+<meta charset="ISO-8859-1">
+<title>Home</title>
+</head>
+<body ng-app="myApp" ng-controller="myController">
+
+	<div class="bs-component">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<a class="navbar-brand" href="#">Policy Payment</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarColor01">
+				<div class="row">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active"><a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a></li>
+					</ul>
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active"><a class="nav-link" href="search.html">Search<span class="sr-only"></span></a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="container" align="center">
+		<div class="row">
+			<div class="col-md-10">
+				<legend>Payment Form</legend>
+				<form class="needs-validation" novalidate>
+					<div class="form-group" align="center">
+						<table border="0" class="table">
+							<tr>
+								<td><label>LOB:</label></td>
+								<td><input type="text" class="form-control" size="20" maxlength="20" placeholder="Enter LOB" ng-model="paymentDetail.lob"  /></td>
+								<td><label>Policy Number:</label></td>
+								<td><input type="text" class="form-control" size="20" maxlength="20" placeholder="Enter Policy Number" ng-model="paymentDetail.policyNumber" ></td>
+							</tr>
+							<tr>
+								<td><label>First Name:</label></td>
+								<td><input type="text" class="form-control" size="20" maxlength="20" placeholder="Enter FirstName" ng-model="paymentDetail.firstName"  /></td>
+								<td><label>Last Name:</label></td>
+								<td><input type="text" class="form-control" size="20" maxlength="20" placeholder="Enter LastName" ng-model="paymentDetail.lastName" ></td>
+							</tr>
+							<tr>
+								<td><label>Billing Address Line:</label></td>
+								<td><input type="text" class="form-control" size="20" maxlength="20" placeholder="Enter Billing Address Line" ng-model="paymentDetail.addrline1"  /></td>
+								<td><label>Billing City:</label></td>
+								<td><input type="text" class="form-control" size="20" maxlength="20" placeholder="Enter Billing City" ng-model="paymentDetail.city" ></td>
+							</tr>
+							<tr>
+								<td><label>Billing State:</label></td>
+								<td><input type="text" class="form-control" size="20" maxlength="20" placeholder="Enter Billing State" ng-model="paymentDetail.state" ></td>
+								<td><label>Billing ZipCode:</label></td>
+								<td><input type="text" class="form-control" size="20" maxlength="20" placeholder="Enter Billing ZipCode" ng-model="paymentDetail.zipcode"  /></td>
+							</tr>
+							<tr>
+								<td><label>Payment Method:</label></td>
+								<td><input type="text" class="form-control" size="20" maxlength="20" placeholder="Enter Payment Method" ng-model="paymentDetail.method"  /></td>
+								<td><label>Payment Amount:</label></td>
+								<td><input type="text" class="form-control" size="20" maxlength="20" placeholder="Enter Payment Amount" ng-model="paymentDetail.amount" ></td>
+							</tr>
+						</table>
+						<div class="col-lg-1">
+							<button type="submit" class="btn btn-primary" ng-click="sendPayment(paymentDetail)">Save</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

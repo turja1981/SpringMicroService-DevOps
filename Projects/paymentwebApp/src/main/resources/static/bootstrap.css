@@ -1,0 +1,22 @@
+@CHARSET "ISO-8859-1";
+
+h1 {
+	background-color: crimson;
+}
+
+h3 {
+	background-color: orange;
+	font-style: verdana;
+}
+
+h4 {
+	background-color: lightblue;
+}
+
+h5 {
+	background-color: khaki;
+}
+
+div {
+	background-color: khaki;
+}
