@@ -15,13 +15,14 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.3.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<cucumber-version>1.2.5</cucumber-version>
 		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
 	</properties>
 
@@ -49,11 +50,35 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>			
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>${cucumber-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-spring</artifactId>
+			<version>${cucumber-version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -103,14 +128,37 @@
 				<version>2.12.2</version>
 				<inherited>true</inherited>
 				<configuration>
-                   <excludes>
-                        <exclude>none</exclude>
-                    </excludes>
-                    <includes>
-                        <!-- Include your Cucumber tests, as an example -->
-                        <include></include>
-                    </includes>
+				<testFailureIgnore>true</testFailureIgnore>
+					<excludes>
+						<exclude>none</exclude>
+					</excludes>
+					<includes>
+						<!-- Include your Cucumber tests, as an example -->
+						<include>**/*CucumberIntegrationTest.java</include>
+					</includes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>net.masterthought</groupId>
+				<artifactId>maven-cucumber-reporting</artifactId>
+				<version>2.0.0</version>
+				<executions>
+					<execution>
+						<id>execution</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<projectName>Add Payment Service</projectName>
+							<outputDirectory>${project.build.directory}/site/cucumber-reports</outputDirectory>
+							<cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
+							<skippedFails>true</skippedFails>
+							<enableFlashCharts>false</enableFlashCharts>
+							<buildNumber>42</buildNumber>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.sonarsource.scanner.maven</groupId>

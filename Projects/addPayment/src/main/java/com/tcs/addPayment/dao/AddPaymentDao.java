@@ -16,9 +16,9 @@ import com.tcs.addPayment.bean.Payment;
 @Repository
 public class AddPaymentDao {
 
-	private final String INSERT_SQL = "INSERT INTO payments(FIRSTNAME,LASTNAME,LOB) values(?,?,?)";
-	private final String FETCH_SQL = "select record_id, name, address, email from users";
-	private final String FETCH_SQL_BY_ID = "select * from users where record_id = ?";
+	private final String INSERT_SQL = "INSERT INTO payments(FIRSTNAME,LASTNAME,POLICY_NO,AMOUNT) values(?,?,?,?)";
+	private final String FETCH_SQL = "select ID , FIRSTNAME,LASTNAME,POLICY_NO,AMOUNT from payments";
+	private final String FETCH_SQL_BY_ID = "select ID , FIRSTNAME,LASTNAME,POLICY_NO,AMOUNT from payments where ID = ?";
 	
 	
 	@Autowired
@@ -33,13 +33,15 @@ public class AddPaymentDao {
 				PreparedStatement ps = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS);
 				ps.setString(1, payment.getFirstName());
 				ps.setString(2, payment.getLastName());
-				ps.setString(3, payment.getLob());
+				ps.setString(3, payment.getPolicyNumber());
+				ps.setDouble(4, payment.getAmount());
 				return ps;
 			}
 		}, holder);
 
 		int newUserId = holder.getKey().intValue();
 		payment.setId(newUserId);
+		payment.setStatus("Success");
 		return payment;
 	}
 }

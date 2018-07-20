@@ -20,10 +20,11 @@ public class InsertPaymentRestController {
 	public Payment insertPayment(@RequestBody Payment payment) {
 		
 		System.out.println(payment.getFirstName());
-//		empList.add(emp);
-		paymentDao.create(payment) ;
+
+		if (payment.getAmount() > 0)
+			paymentDao.create(payment) ;
+		else
+			payment.setStatus("Payment Amount must be greater than Zero");
 		return payment;
 	}
-	
-
 }
