@@ -14,8 +14,8 @@ import com.tcs.showPayment.bean.Payment;
 public class GetPaymentDao {
 
 
-	private final String FETCH_SQL = "select ID, FIRSTNAME, LASTNAME, POLICY_NO,ADDRESSLINE,STATE,CITY,ZIP,METHOD,AMOUNT,LOB from payments";
-	private final String FETCH_SQL_BY_ID = "select ID, FIRSTNAME, LASTNAME, POLICY_NO,ADDRESSLINE,STATE,CITY,ZIP,METHOD,AMOUNT,LOB from payments where ID = ?";
+	private final String FETCH_SQL = "select ID, FIRSTNAME, LASTNAME, POLICY_NO,AMOUNT,STATUS from payments";
+	private final String FETCH_SQL_BY_ID = "select ID, FIRSTNAME, LASTNAME, POLICY_NO,AMOUNT,STATUS from payments where ID = ?";
 	
 	
 	@Autowired
