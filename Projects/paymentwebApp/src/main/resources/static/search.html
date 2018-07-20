@@ -51,17 +51,17 @@
 								<th scope="col">Policy Number</th>
 								<th scope="col">First Name</th>
 								<th scope="col">Last Name</th>
-								<th scope="col">Payment Method</th>
 								<th scope="col">Payment Amount</th>
+								<th scope="col">Payment Status</th>								
 								</tr>
 							</thead>
 							<tr ng-repeat="payment in allPayment">
-								<td><a ng-href="#" ng-click="editPayment(payment.id) ">{{payment.id}}</a></td>
-								<td><label>{{payment.policyNumber}}</label></td>
-								<td><label>{{payment.firstName}}</label></td>
-								<td><label>{{payment.lastName}}</label></td>
-								<td><label>{{payment.method}}</label></td>
-								<td><label>{{payment.amount}}</label></td>
+								<td><label id="id">{{payment.id}}</label></td>
+								<td><label id="policyNumber">{{payment.policyNumber}}</label></td>
+								<td><label id="firstName">{{payment.firstName}}</label></td>
+								<td><label id="lastName">{{payment.lastName}}</label></td>
+								<td><label id="amount">{{payment.amount}}</label></td>
+								<td><label id="status">{{payment.status}}</label></td>
 							</tr>
 						</table>
 					</div>

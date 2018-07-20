@@ -12,7 +12,7 @@ app.controller("myController",function($scope, $http, $location) {
 				JSON.stringify(paymentDetail)).then(function(response) {
 					if (response.data) {
 						console.log(response.data);
-						$scope.msg = "Payment Successful";
+						$scope.paymentDetail = eval(response.data);
 					}
 				});
 	}
