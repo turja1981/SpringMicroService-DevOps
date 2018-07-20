@@ -41,6 +41,8 @@ class PaymentMapper implements RowMapper<Payment> {
 		payment.setFirstName(rs.getString("FIRSTNAME"));
 		payment.setLastName(rs.getString("LASTNAME"));
 		payment.setPolicyNumber(rs.getString("POLICY_NO"));
+		payment.setStatus(rs.getString("STATUS"));
+		payment.setAmount(rs.getDouble("AMOUNT"));
 		return payment;
 	}
 
