@@ -1,4 +1,4 @@
-package com.tcs.addPayment.bean;
+package com.tcs.showPayment.bean;
 
 public class Payment {
 	
