@@ -16,7 +16,7 @@ import com.tcs.addPayment.bean.Payment;
 @Repository
 public class AddPaymentDao {
 
-	private final String INSERT_SQL = "INSERT INTO payments(FIRSTNAME,LASTNAME,POLICY_NO,AMOUNT) values(?,?,?,?)";
+	private final String INSERT_SQL = "INSERT INTO payments(FIRSTNAME,LASTNAME,POLICY_NO,AMOUNT,STATUS) values(?,?,?,?,?)";
 	private final String FETCH_SQL = "select ID , FIRSTNAME,LASTNAME,POLICY_NO,AMOUNT from payments";
 	private final String FETCH_SQL_BY_ID = "select ID , FIRSTNAME,LASTNAME,POLICY_NO,AMOUNT from payments where ID = ?";
 	
@@ -35,6 +35,7 @@ public class AddPaymentDao {
 				ps.setString(2, payment.getLastName());
 				ps.setString(3, payment.getPolicyNumber());
 				ps.setDouble(4, payment.getAmount());
+				ps.setString(5, "Success");
 				return ps;
 			}
 		}, holder);
