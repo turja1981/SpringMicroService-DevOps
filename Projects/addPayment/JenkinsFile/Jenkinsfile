@@ -16,13 +16,24 @@ pipeline {
 			steps {
 				script {
 					dir ('Projects/addPayment') {
-						sh "mvn clean install -Dmaven.test.skip=true "
+						sh "mvn clean install -Dmaven.test.skip=true"
 					}
 																	
 				}
 
 			}
 		}
+		stage('Code Analysis') {
+			steps {
+				script {
+					dir ('Projects/addPayment') {
+						sh "mvn sonar:sonar -Dsonar.analysis.mode=preview -Dsonar.issuesReport.html.enable=true"
+					}
+																	
+				}
+
+			}
+		}		
 		
         stage('Image') {
 	        steps {
