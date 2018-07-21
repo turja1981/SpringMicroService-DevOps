@@ -28,7 +28,7 @@ pipeline {
 				script {
 					dir ('Projects/addPayment') {
 					withSonarQubeEnv('sonar_dev_QB') {
-						sh "mvn sonar:sonar -Dsonar.analysis.mode=preview -Dsonar.issuesReport.html.enable=true"
+						sh "mvn sonar:sonar -Dsonar.analysis.mode=preview -Dsonar.issuesReport.html.enable=true -sonar.login=sonar -Dsonar.password=sonar"
 						}
 					}
 																	
