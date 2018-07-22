@@ -24,6 +24,14 @@
 		<java.version>1.8</java.version>
 		<cucumber-version>1.2.5</cucumber-version>
 		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+		<!-- Sonar-JaCoCo properties -->
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.jacoco.reportPaths>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPaths>
+		<sonar.language>java</sonar.language>
+		<sonar.sources>src/main</sonar.sources>
+        <sonar.tests>src/test</sonar.tests>
+        <sonar.java.binaries>target/classes</sonar.java.binaries>				
 	</properties>
 
 	<dependencies>
@@ -81,6 +89,12 @@
 			<version>${cucumber-version}</version>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+          <groupId>org.codehaus.sonar-plugins.java</groupId>
+          <artifactId>sonar-jacoco-listeners</artifactId>
+          <version>1.2</version>
+          <scope>test</scope>
+        </dependency>		
 	</dependencies>
 
 	<dependencyManagement>
@@ -118,8 +132,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -136,6 +150,12 @@
 						<!-- Include your Cucumber tests, as an example -->
 						<include>**/*CucumberIntegrationTest.java</include>
 					</includes>
+					<properties>
+					    <property>
+					        <name>listener</name>
+					        <value>org.sonar.java.jacoco.JUnitListener</value>
+					    </property>
+					</properties>					
 				</configuration>
 			</plugin>
 			<plugin>
@@ -165,6 +185,37 @@
 				<artifactId>sonar-maven-plugin</artifactId>
 				<version>3.4.0.905</version>
 			</plugin>
+			<!-- Sonar-JaCoCo integration plugin -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.6.201602180812</version>
+				<configuration>
+					<destFile>${sonar.jacoco.reportPaths}</destFile>
+					<append>true</append>
+				</configuration>
+				<executions>
+					<execution>
+						<id>agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to where the execution data is located. -->
+                            <dataFile>${sonar.jacoco.reportPaths}</dataFile>
+                            <!-- Sets the output directory for the code coverage report. -->
+                            <outputDirectory>${jacoco.ut.outputdir}</outputDirectory>
+                        </configuration>
+                    </execution>					
+				</executions>
+			</plugin>			
 		</plugins>
 	</build>
 </project>

@@ -21,8 +21,8 @@ public class AddPaymentStepDefinition extends SpringBootBaseIntegrationTest {
 	@When("User submit Payment Amount = (\\d+) with other details to the Add Payment Page")
 	public void user_submit_payment_amount(int paymentAmount) {
 
-		pmt.setFirstName("Johnathan M Smith");
-		pmt.setLastName("JS01");
+		pmt.setFirstName("Johnathan");
+		pmt.setLastName("Smith");
 		pmt.setPolicyNumber("12345");
 		pmt.setAmount(paymentAmount);
 		pmt = savePayment(pmt);
