@@ -21,7 +21,7 @@ public abstract class SpringBootBaseIntegrationTest {
 
     private static final Logger log = LoggerFactory.getLogger(SpringBootBaseIntegrationTest.class);
 
-    private final String SERVER_URL = "http://localhost:3333";
+    private final String SERVER_URL = "http://addPayment:3333";
     private final String PAYMENT_ENDPOINT = "/sendPayment";
 
     private RestTemplate restTemplate;
