@@ -23,12 +23,12 @@ pipeline {
 
 			}
 		}
-		stage('Code Analysis') {
+		stage('Code Analysis & Unit Testing') {
 			steps {
 				script {
 					dir ('Projects/addPayment') {
 					withSonarQubeEnv('sonar_dev_QB') {
-						sh "mvn sonar:sonar -Dsonar.analysis.mode=preview -Dsonar.issuesReport.html.enable=true -Dsonar.login=sonar -Dsonar.password=sonar"
+						sh "mvn test verify sonar:sonar -Dsonar.analysis.mode=preview -Dsonar.issuesReport.html.enable=true -Dsonar.login=sonar -Dsonar.password=sonar"
 						}
 					}
 																	
@@ -36,8 +36,17 @@ pipeline {
 
 			}
 		}		
-		
-        stage('Image') {
+		stage("Quality Gate"){
+			steps {
+				timeout(time: 1, unit: 'HOURS') {
+					// Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+					// true = set pipeline to UNSTABLE, false = don't
+					// Requires SonarQube Scanner for Jenkins 2.7+
+					waitForQualityGate abortPipeline: true
+				}
+			}
+		}		
+        stage('Docker Image') {
 	        steps {
 		        script {
 		        	sh "cp Projects/addPayment/target/*.jar Projects/addPayment/dockerfile/"
