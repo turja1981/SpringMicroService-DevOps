@@ -50,7 +50,7 @@ public class SeleniumTest {
 	@Test
 	public void testPaymentSummary() throws Exception {
 
-		driver.get("http://localhost:9999/search.html");
+		driver.get("http://localhost:3335/search.html");
 
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("firstName")));
@@ -72,7 +72,7 @@ public class SeleniumTest {
 
 		System.out.println("inside test");
 
-		driver.get("http://localhost:9999/");
+		driver.get("http://localhost:3335/");
 
 		firstName = driver.findElement(By.name("firstName"));
 		firstName.sendKeys("John");
