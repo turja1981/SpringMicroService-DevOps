@@ -30,7 +30,7 @@ pipeline {
 		        	sh "cp Projects/addPayment/target/*.jar Projects/addPayment/dockerfile/"
 
 		            dir ('Projects/addPayment/dockerfile') {
-		                def addPaymentApp = docker.build("Int_region/add-payment-service:${env.BUILD_ID}")
+		                def addPaymentApp = docker.build("int_region/add-payment-service:${env.BUILD_ID}")
 		            }
 
 		            }			            	            		            
@@ -40,7 +40,7 @@ pipeline {
         stage ('Add Payment Run') {
         	steps {
         	script {
-            	docker.image("Int_region/add-payment-service:${env.BUILD_ID}").run('-p 3333:3333 -h addPayment --name addPayment --network  devops_default --dns=172.18.0.5')
+            	docker.image("int_region/add-payment-service:${env.BUILD_ID}").run('-p 3333:3333 -h addPayment --name addPayment --network  devops_default --dns=172.18.0.5')
             	sh 'sleep 10'
             	}
             }
