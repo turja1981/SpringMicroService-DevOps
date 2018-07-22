@@ -23,7 +23,7 @@ pipeline {
 
 			}
 		}
-		stage('Code Analysis & Unit Testing') {
+		stage('Unit Testing & Code Analysis') {
 			steps {
 				script {
 					dir ('Projects/addPayment') {
