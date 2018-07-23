@@ -7,8 +7,12 @@ pipeline {
                     echo "M2_HOME = ${M2_HOME}"
                 '''
 			} }
-		stage('Checkout SCM') { steps { checkout scm
-			} }
+		stage('Checkout SCM') {
+			steps {
+				checkout scm
+				livingDocs(	featuresDir:'Projects/addPayment')
+			}
+		}
 
 		stage('Build') {
 			steps {
@@ -45,6 +49,10 @@ pipeline {
 					}
 				}
 			}
+		}
+		post {
+			always { //generate cucumber reports
+				cucumber '**/target/*.json' }
 		}
 	}
 }
