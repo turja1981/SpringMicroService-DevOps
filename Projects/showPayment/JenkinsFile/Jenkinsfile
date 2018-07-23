@@ -49,10 +49,12 @@ pipeline {
 			}
 			post {
 				always {
+				steps {
 					 //generate cucumber reports
 					cucumber '**/target/*.json' 
 				    // send report to slack
-				    cucumberSendSlack:  json: '**/target/*.json'	}
+				    cucumberSendSlack:  json: '**/target/*.json'
+				    }	}
 			}
 		}
 	}
