@@ -16,7 +16,7 @@ import com.tcs.addPayment.bean.Payment;
 @Repository
 public class AddPaymentDao {
 
-	private final String INSERT_SQL = "INSERT INTO payments(FIRSTNAME,LASTNAME,POLICY_NO,AMOUNT,STATUS) values(?,?,?,?,?)";
+	private final static String INSERT_SQL = "INSERT INTO payments(FIRSTNAME,LASTNAME,POLICY_NO,AMOUNT,STATUS) values(?,?,?,?,?)";
 
 	
 	
