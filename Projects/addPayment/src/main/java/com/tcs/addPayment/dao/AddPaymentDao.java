@@ -18,8 +18,7 @@ public class AddPaymentDao {
 
 	private final static String INSERT_SQL = "INSERT INTO payments(FIRSTNAME,LASTNAME,POLICY_NO,AMOUNT,STATUS) values(?,?,?,?,?)";
 
-	
-	
+		
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
