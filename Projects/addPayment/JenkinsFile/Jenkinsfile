@@ -5,8 +5,7 @@ pipeline {
 		stage ('Initialize') { steps { sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
-                '''
-			} }
+                ''' } }
 		stage('Checkout SCM') {
 			steps {
 				checkout scm
@@ -49,10 +48,10 @@ pipeline {
 					}
 				}
 			}
-		}
-		post {
-			always { //generate cucumber reports
-				cucumber '**/target/*.json' }
+			post {
+				always { //generate cucumber reports
+					cucumber '**/target/*.json' }
+			}
 		}
 	}
 }
