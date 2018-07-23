@@ -52,7 +52,7 @@ pipeline {
 					 //generate cucumber reports
 					cucumber '**/target/*.json' 
 				    // send report to slack
-				    cucumberSendSlack: channel: 'dev_deployment', json: '**/target/*.json'	}
+				    cucumberSendSlack:  json: '**/target/*.json'	}
 			}
 		}
 	}
