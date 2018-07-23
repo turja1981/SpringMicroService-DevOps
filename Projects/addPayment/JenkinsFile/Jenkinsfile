@@ -5,8 +5,10 @@ pipeline {
 		stage ('Initialize') { steps { sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
-                ''' } }
-		stage('Checkout SCM') { steps { checkout scm } }
+                '''
+			} }
+		stage('Checkout SCM') { steps { checkout scm
+			} }
 
 		stage('Build') {
 			steps {
@@ -35,6 +37,14 @@ pipeline {
 				}
 			}
 		}
-
+		stage('Unit Testing & Code Analysis') {
+			steps {
+				script {
+					dir ('Projects/addPayment') {
+						withSonarQubeEnv('sonar_dev_QB') { sh "mvn test sonar:sonar -Dsonar.analysis.mode=preview -Dsonar.issuesReport.html.enable=true -Dsonar.login=sonar -Dsonar.password=sonar" }
+					}
+				}
+			}
+		}
 	}
 }
