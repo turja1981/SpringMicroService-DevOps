@@ -2,15 +2,11 @@ pipeline {
 	agent any
 	tools{ maven 'mvn-3.3.9' }
 	stages {
-		stage ('Initialize') {
-			steps { sh '''
+		stage ('Initialize') { steps { sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
-                ''' }
-		}
-		stage('Checkout SCM') {
-			steps { checkout scm }
-		}
+                ''' } }
+		stage('Checkout SCM') { steps { checkout scm } }
 
 		stage('Build') {
 			steps {
@@ -52,10 +48,13 @@ pipeline {
 				}
 			}
 			post {
-				always { //generate cucumber reports
-					cucumber '**/target/*.json' }
+				always {
+					 //generate cucumber reports
+					cucumber '**/target/*.json' 
+				    // send report to slack
+				    cucumberSendSlack: channel: 'dev_deployment', json: '**/target/*.json'	}
 			}
-		}		
+		}
 	}
 }
 
