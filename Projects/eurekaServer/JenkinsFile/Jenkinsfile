@@ -1,95 +1,40 @@
-pipeline {
+	pipeline {
 	agent any
 	tools{ maven 'mvn-3.3.9' }
 	stages {
-		stage ('Initialize') {
-			steps { sh '''
+		stage ('Initialize') { steps { sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
-                ''' }
-		}
-		stage('Checkout SCM') {
-			steps { checkout scm }
-		}
+                ''' } }
+		stage('Checkout SCM') { steps { checkout scm } }
 
 		stage('Build') {
 			steps {
 				script {
-					dir ('Projects/eurekaServer') {
-						sh "mvn clean install -Dmaven.test.skip=true "
-						}
-					dir ('Projects/addPayment') {
-						sh "mvn clean install -Dmaven.test.skip=true "
-					}
-					dir ('Projects/showPayment') {
-						sh "mvn clean install -Dmaven.test.skip=true "
-					}	
-					dir ('Projects/apiGateway') {
-						sh "mvn clean install -Dmaven.test.skip=true "
-					}	
-					dir ('Projects/paymentwebApp') {
-						sh "mvn clean install -Dmaven.test.skip=true "
-					}																			
+					dir ('Projects/eurekaServer') { sh "mvn clean install -Dmaven.test.skip=true " }
 				}
-
 			}
 		}
-		
-        stage('Image') {
-	        steps {
-		        script {
-		        	sh "cp Projects/eurekaServer/target/*.jar Projects/eurekaServer/dockerfile/"
-		        	sh "cp Projects/addPayment/target/*.jar Projects/addPayment/dockerfile/"
-		        	sh "cp Projects/showPayment/target/*.jar Projects/showPayment/dockerfile/"
-		        	sh "cp Projects/paymentwebApp/target/*.jar Projects/paymentwebApp/dockerfile/"
-		        	
-		            dir ('Projects/eurekaServer/dockerfile') {
-		                def dicoveryApp = docker.build("turja/discovery-service:${env.BUILD_ID}")
-		            }
-		            dir ('Projects/addPayment/dockerfile') {
-		                def addPaymentApp = docker.build("turja/add-payment-service:${env.BUILD_ID}")
-		            }
-		            dir ('Projects/showPayment/dockerfile') {
-		                def showPaymentApp = docker.build("turja/show-payment-service:${env.BUILD_ID}")
-		            }	
-		            dir ('Projects/paymentwebApp/dockerfile') {
-		                def showPaymentApp = docker.build("turja/payment-web-app:${env.BUILD_ID}")
-		            }			            	            		            
-	            }
-	            
-            }
-        }
-        stage ('Eureka Run') {
-        	steps {
-        	script {
-            	docker.image("turja/discovery-service:${env.BUILD_ID}").run('-p 8761:8761 -h discovery --name discovery --network  devops_default --dns=172.18.0.4')
-            	sh 'sleep 10'
-            	}
-            }
-        }
-        stage ('Add Payment Run') {
-        	steps {
-        	script {
-            	docker.image("turja/add-payment-service:${env.BUILD_ID}").run('-p 3333:3333 -h addPayment --name addPayment --network  devops_default --dns=172.18.0.5')
-            	sh 'sleep 10'
-            	}
-            }
-        }
-        stage ('Show Payment Run') {
-        	steps {
-        	script {
-            	docker.image("turja/show-payment-service:${env.BUILD_ID}").run('-p 3334:3334 -h showPayment --name showPayment --network  devops_default --dns=172.18.0.6')
-            	sh 'sleep 10'
-            	}
-            }
-        }        
-        stage ('Payment Web Run') {
-        	steps {
-        	script {
-            	docker.image("turja/payment-web-app:${env.BUILD_ID}").run('-p 3335:3335 -h paymentWeb --name paymentWeb --network  devops_default --dns=172.18.0.7')
-            	}
-            }
-        }        
+
+		stage('Image') {
+			steps {
+				script {
+					sh "cp Projects/eurekaServer/target/*.jar Projects/eurekaServer/dockerfile/"
+
+
+					dir ('Projects/eurekaServer/dockerfile') {
+						def dicoveryApp = docker.build("turja/discovery-service:${env.BUILD_ID}")
+					}
+				}
+			}
+		}
+		stage ('Eureka Run') {
+			steps {
+				script {
+					docker.image("turja/discovery-service:${env.BUILD_ID}").run('-p 8761:8761 -h discovery --name discovery --network  devops_default --dns=172.18.0.4')
+				}
+			}
+		}
 	}
 }
 
