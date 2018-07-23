@@ -49,13 +49,11 @@ pipeline {
 			}
 			post {
 				always {
-				steps {
+
 					 //generate cucumber reports
 					cucumber '**/target/*.json' 
-				    // send report to slack
-				    step([$class: 'CucumberReportPublisher', jsonReportDirectory: 'target/', fileIncludePattern: '*.json'])
-				    cucumberSendSlack:  json: '**/target/*.json'
-				    }	}
+
+				    }	
 			}
 		}
 	}
