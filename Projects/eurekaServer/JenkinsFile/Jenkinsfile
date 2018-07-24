@@ -3,20 +3,20 @@
 	mvnHome = tool 'maven_3.3.9'
 
 
-    echo "PATH = ${PATH}"
-    echo "M3_HOME = ${mvnHome}"
-    env.PATH = "${mvnHome}/bin:${PATH}"
-                   
-       
-	stage('Checkout SCM') {checkout scm }
+	echo "PATH = ${PATH}"
+	echo "M3_HOME = ${mvnHome}"
+	env.PATH = "${mvnHome}/bin:${PATH}"
+
+
+	stage('Checkout SCM') { checkout scm }
 
 	stage('Build') {
 
 		dir ('Projects/eurekaServer') { sh "mvn clean install -Dmaven.test.skip=true " }
 	}
-}
 
-stage('Image') {
+
+	stage('Image') {
 
 
 		sh "cp Projects/eurekaServer/target/*.jar Projects/eurekaServer/dockerfile/"
@@ -25,13 +25,12 @@ stage('Image') {
 		dir ('Projects/eurekaServer/dockerfile') {
 			def dicoveryApp = docker.build("int-region/discovery-service:${env.BUILD_ID}")
 		}
-	
-}
-stage ('Eureka Run') {
+	}
+	stage ('Eureka Run') {
 
-	script {
-		docker.image("int-region/discovery-service:${env.BUILD_ID}").run('-p 8761:8761 -h discovery --name discovery --network  devops_default --dns=172.18.0.4')
+		script {
+			docker.image("int-region/discovery-service:${env.BUILD_ID}").run('-p 8761:8761 -h discovery --name discovery --network  devops_default --dns=172.18.0.4')
+		}
 	}
 }
-
 
