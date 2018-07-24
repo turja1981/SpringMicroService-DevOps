@@ -4,7 +4,7 @@
 
 	stage ('Initialize') { sh '''
                     echo "PATH = ${PATH}"
-                    env.PATH = "${mvnHome}/bin:${env.PATH}"
+                    env.PATH = "${mvnHome}/bin:${PATH}"
                     echo "M3_HOME = ${mvnHome}"
                 ''' }
 	stage('Checkout SCM') {checkout scm }
