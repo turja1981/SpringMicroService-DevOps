@@ -53,5 +53,9 @@ pipeline {
 					cucumber '**/target/*.json' }
 			}
 		}
+		stage ('Starting ART job') {
+    build job: 'RunArtInTest', parameters: [[$class: 'StringParameterValue', name: 'systemname', value: systemname]]
+}
+		
 	}
 }
