@@ -4,10 +4,10 @@ node {
 	echo "M3_HOME = ${mvnHome}"
 	env.PATH = "${mvnHome}/bin:${PATH}"
 
-	stage('Checkout SCM') { checkout scm }
+
 
 	stage('Build') {
-		dir ('Projects/showPayment') { sh "mvn clean install -Dmaven.test.skip=true " }
+		build job: 'build_show_payment_pipeline' 
 	}
 
 	stage('Docker Image') {
