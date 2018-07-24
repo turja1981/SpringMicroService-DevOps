@@ -1,10 +1,11 @@
 	node  {
 
-	maven = tool 'maven_3.3.9'
+	mvnHome = tool 'maven_3.3.9'
 
 	stage ('Initialize') { sh '''
                     echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
+                    env.PATH = "${mvnHome}/bin:${env.PATH}"
+                    echo "M3_HOME = ${mvnHome}"
                 ''' }
 	stage('Checkout SCM') {checkout scm }
 
