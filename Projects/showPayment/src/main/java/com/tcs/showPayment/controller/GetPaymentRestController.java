@@ -25,7 +25,7 @@ public class GetPaymentRestController {
 	
 	@GetMapping("/payments/{id}")
 	public Payment getPayment(@PathVariable int id) {
-		System.out.println("---id--"+id);
+		System.out.println("------id--"+id);
 		return paymentDao.findPaymentById(id) ;
 	}
 	
