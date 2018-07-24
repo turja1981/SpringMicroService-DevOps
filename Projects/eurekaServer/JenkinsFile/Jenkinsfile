@@ -18,14 +18,14 @@
 
 stage('Image') {
 
-	script {
+
 		sh "cp Projects/eurekaServer/target/*.jar Projects/eurekaServer/dockerfile/"
 
 
 		dir ('Projects/eurekaServer/dockerfile') {
 			def dicoveryApp = docker.build("int-region/discovery-service:${env.BUILD_ID}")
 		}
-	}
+	
 }
 stage ('Eureka Run') {
 
