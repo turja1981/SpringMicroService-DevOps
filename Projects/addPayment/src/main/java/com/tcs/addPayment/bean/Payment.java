@@ -10,7 +10,7 @@ public class Payment {
 	private String firstName;
 	
 	private String lastName;
-	
+	//This is status
 	private String status ;
 	
 	private double amount ;
