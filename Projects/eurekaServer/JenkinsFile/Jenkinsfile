@@ -1,4 +1,6 @@
 	node  {
+	tools{ maven 'mvn-3.3.9' }
+
 	stage ('Initialize') { sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
