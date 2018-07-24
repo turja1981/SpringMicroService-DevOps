@@ -20,7 +20,7 @@ public class InsertPaymentRestController {
 	public Payment insertPayment(@RequestBody Payment payment) {
 		
 		System.out.println(payment.getFirstName());
-		
+		// Get the LastName
 		System.out.println(payment.getLastName());
 
 		if (payment.getAmount() > 0)
