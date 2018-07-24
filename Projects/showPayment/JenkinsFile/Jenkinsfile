@@ -1,61 +1,36 @@
-pipeline {
-	agent any
-	tools{ maven 'mvn-3.3.9' }
-	stages {
-		stage ('Initialize') { steps { sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                ''' } }
-		stage('Checkout SCM') { steps { checkout scm } }
+node {
+	mvnHome = tool 'maven_3.3.9'
+	echo "PATH = ${PATH}"
+	echo "M3_HOME = ${mvnHome}"
+	env.PATH = "${mvnHome}/bin:${PATH}"
 
-		stage('Build') {
-			steps {
-				script {
+	stage('Checkout SCM') { checkout scm }
 
-					dir ('Projects/showPayment') { sh "mvn clean install -Dmaven.test.skip=true " }
-				}
-			}
+	stage('Build') {
+		dir ('Projects/showPayment') { sh "mvn clean install -Dmaven.test.skip=true " }
+	}
+
+	stage('Docker Image') {
+
+		sh "cp Projects/showPayment/target/*.jar Projects/showPayment/dockerfile/"
+		dir ('Projects/showPayment/dockerfile') {
+			def showPaymentApp = docker.build("int_region/show-payment-service:${env.BUILD_ID}")
 		}
-
-		stage('Docker Image') {
-			steps {
-				script {
-
-					sh "cp Projects/showPayment/target/*.jar Projects/showPayment/dockerfile/"
+	}
 
 
-					dir ('Projects/showPayment/dockerfile') {
-						def showPaymentApp = docker.build("int_region/show-payment-service:${env.BUILD_ID}")
-					}
-				}
-			}
-		}
+	stage ('Show Payment Run') {
 
-		stage ('Show Payment Run') {
-			steps {
-				script {
-					docker.image("int_region/show-payment-service:${env.BUILD_ID}").run('-p 3334:3334 -h showPayment --name showPayment --network  devops_default --dns=172.18.0.6')
-					sh 'sleep 10'
-				}
-			}
-		}
-		stage('Unit Testing & Code Analysis') {
-			steps {
-				script {
-					dir ('Projects/showPayment') {
-						withSonarQubeEnv('sonar_dev_QB') { sh "mvn test sonar:sonar -Dsonar.login=sonar -Dsonar.password=sonar" }
-					}
-				}
-			}
-			post {
-				always {
+		docker.image("int_region/show-payment-service:${env.BUILD_ID}").run('-p 3334:3334 -h showPayment --name showPayment --network  devops_default --dns=172.18.0.6')
+		sh 'sleep 10'
+	}
 
-					 //generate cucumber reports
-					cucumber '**/target/*.json' 
+	stage('Unit Testing & Code Analysis') {
+		dir ('Projects/showPayment') {
+			withSonarQubeEnv('sonar_dev_QB') { sh "mvn test sonar:sonar -Dsonar.login=sonar -Dsonar.password=sonar" }
+			//generate cucumber reports
+			cucumber '**/target/*.json'
 
-				    }	
-			}
 		}
 	}
 }
-
