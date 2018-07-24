@@ -3,7 +3,7 @@ package com.tcs.showPayment.bean;
 public class Payment {
 	
 	private int Id ;
-	//Policy Number
+	//Policy Number 
 	private String policyNumber;
 	
 	private String firstName;
