@@ -6,7 +6,7 @@ public class Payment {
 	private int Id ;
 	//This is PolicyNumber
 	private String policyNumber;
-	
+	//This is FirstName
 	private String firstName;
 	
 	private String lastName;
