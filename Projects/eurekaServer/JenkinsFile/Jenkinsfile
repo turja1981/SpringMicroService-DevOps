@@ -1,6 +1,6 @@
 	node  {
 
-	maven = tool 'mvn-3.3.9'
+	maven = tool 'maven_3.3.9'
 
 	stage ('Initialize') { sh '''
                     echo "PATH = ${PATH}"
@@ -21,14 +21,14 @@ stage('Image') {
 
 
 		dir ('Projects/eurekaServer/dockerfile') {
-			def dicoveryApp = docker.build("turja/discovery-service:${env.BUILD_ID}")
+			def dicoveryApp = docker.build("int-region/discovery-service:${env.BUILD_ID}")
 		}
 	}
 }
 stage ('Eureka Run') {
 
 	script {
-		docker.image("turja/discovery-service:${env.BUILD_ID}").run('-p 8761:8761 -h discovery --name discovery --network  devops_default --dns=172.18.0.4')
+		docker.image("int-region/discovery-service:${env.BUILD_ID}").run('-p 8761:8761 -h discovery --name discovery --network  devops_default --dns=172.18.0.4')
 	}
 }
 
