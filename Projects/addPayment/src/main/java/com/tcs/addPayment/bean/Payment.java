@@ -4,7 +4,7 @@ public class Payment {
 	
 	//This is Id Field
 	private int Id ;
-	
+	//This is PolicyNumber
 	private String policyNumber;
 	
 	private String firstName;
