@@ -8,7 +8,7 @@ public class Payment {
 	private String policyNumber;
 	//This is FirstName
 	private String firstName;
-	
+	//This is LastName
 	private String lastName;
 	
 	private String status ;
