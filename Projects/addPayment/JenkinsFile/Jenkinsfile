@@ -7,7 +7,7 @@ node {
 
 	stage('Build') {
 
-		dir ('Projects/addPayment') { build job: 'Test_maven' }
+		 build job: 'build_add_payment_pipeline' 
 	}
 
 	stage('Docker Image') {
