@@ -27,7 +27,7 @@ node {
 	stage('Unit Testing & Code Analysis') {
 
 		dir ('Projects/addPayment') {
-			withSonarQubeEnv('sonae_QB') { sh "mvn test sonar:sonar -Dsonar.login=sonar -Dsonar.password=sonar" }
+			withSonarQubeEnv('sonar_QB') { sh "mvn test sonar:sonar -Dsonar.login=sonar -Dsonar.password=sonar" }
 			cucumber '**/target/*.json'
 		}
 	}
