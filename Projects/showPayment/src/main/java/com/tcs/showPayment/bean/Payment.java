@@ -11,7 +11,7 @@ public class Payment {
 	private String lastName;
 	
 	private String status ;
-	
+	//This is Amount Field
 	private double amount ;
 
 	public String getPolicyNumber() {
