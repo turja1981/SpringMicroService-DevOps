@@ -10,7 +10,7 @@ node {
 		 build job: 'build_add_payment_pipeline' 
 	}
 
-	stage('Docker Image') {
+	stage('Create Docker Image') {
 
 		sh "cp Projects/addPayment/target/*.jar Projects/addPayment/dockerfile/"
 
@@ -18,13 +18,13 @@ node {
 			def addPaymentApp = docker.build("int_region/add-payment-service:${env.BUILD_ID}")
 		}
 	}
-	stage ('Add Payment Run') {
+	stage ('Run Docker Image') {
 
 		docker.image("int_region/add-payment-service:${env.BUILD_ID}").run('-p 3333:3333 -h addPayment --name addPayment --network  devops_default --dns=172.18.0.5')
 		sh 'sleep 10'
 	}
 
-	stage('Unit Testing & Code Analysis') {
+	stage('Integration Testing & Code Analysis') {
 
 		dir ('Projects/addPayment') {
 			withSonarQubeEnv('sonar_QB') { sh "mvn test sonar:sonar -Dsonar.login=sonar -Dsonar.password=sonar" }
