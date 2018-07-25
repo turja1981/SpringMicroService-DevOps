@@ -1,4 +1,4 @@
-package com.tcs.addPayment.controller;
+package com.tcs.addPayment.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,7 +11,7 @@ import com.tcs.addPayment.dao.AddPaymentDao;
 
 @CrossOrigin
 @RestController
-public class InsertPaymentRestController {
+public class AddPaymentService {
 	
 	@Autowired
 	private AddPaymentDao paymentDao =  new AddPaymentDao();
