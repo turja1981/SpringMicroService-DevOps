@@ -8,14 +8,14 @@ node {
 	stage('Build') {
 		dir ('Projects/paymentwebApp') { sh "mvn clean install -Dmaven.test.skip=true " }
 	}
-	stage('Docker Image') {
+	stage('Create Docker Image') {
 		sh "cp Projects/paymentwebApp/target/*.jar Projects/paymentwebApp/dockerfile/"
 
 		dir ('Projects/paymentwebApp/dockerfile') {
 			def showPaymentApp = docker.build("int_region/payment-web-app:${env.BUILD_ID}")
 		}
 	}
-	stage ('Payment Web Run') {
+	stage ('Run Docker Image') {
 		docker.image("int_region/payment-web-app:${env.BUILD_ID}").run('-p 3335:3335 -h paymentWeb --name paymentWeb --network  devops_default --dns=172.18.0.7')
 	}
 	stage('QA Testing & Code Analysis') {
