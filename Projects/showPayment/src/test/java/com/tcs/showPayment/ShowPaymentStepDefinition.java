@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.tcs.showPayment.bean.Payment;
-import com.tcs.showPayment.controller.GetPaymentRestController;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -20,11 +19,6 @@ public class ShowPaymentStepDefinition extends SpringBootBaseIntegrationTest {
 
 	private List<Payment> pmtList = null;
 
-	private GetPaymentRestController app;
-	
-    public ShowPaymentStepDefinition() {
-        this.app = new GetPaymentRestController();
-    }
     
 	@When("^User browse the Payment Summary page$")
 	public void user_browse_payment_summary() {
