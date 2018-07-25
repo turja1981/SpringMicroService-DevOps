@@ -14,7 +14,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 @Ignore
-public class ShowPaymentStepDefinition  {
+public class ShowPaymentStepDefinition extends SpringBootBaseIntegrationTest {
 
 	private final Logger log = LoggerFactory.getLogger(ShowPaymentStepDefinition.class);
 
@@ -29,7 +29,7 @@ public class ShowPaymentStepDefinition  {
 	@When("^User browse the Payment Summary page$")
 	public void user_browse_payment_summary() {
 
-		pmtList = app.getAllPayments();
+		pmtList = getAllPayments();
 
 		Assert.assertNotNull(pmtList);
 	}
