@@ -1,4 +1,4 @@
-package com.tcs.showPayment.controller;
+package com.tcs.showPayment.service;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import com.tcs.showPayment.dao.GetPaymentDao;
 
 @CrossOrigin
 @RestController
-public class GetPaymentRestController {
+public class ShowPaymentService {
 	
 	@Autowired
 	private GetPaymentDao paymentDao =  new GetPaymentDao();
