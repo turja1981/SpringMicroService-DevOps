@@ -23,7 +23,7 @@
 		}
 	}
 	stage ('Run Docker Image') {
-		docker.image("int_region/discovery-service:${env.BUILD_ID}").run('-p 8761:8761 -h discovery --name discovery --network  devops_default --dns=172.18.0.4')
+		docker.image("int_region/discovery-service:${env.BUILD_ID}").run('-p 8761:8761 -h discovery --name discovery --network  devops_default --ip=172.18.0.4')
 	}
 }
 
