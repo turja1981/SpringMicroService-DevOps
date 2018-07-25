@@ -22,8 +22,7 @@ zuul:
     addpayment:
       path: /sendPayment/**
       serviceId: add-payment-service
-  host:
-  	socket-timeout-millis=30000	  
+  
     
     
 ribbon:
