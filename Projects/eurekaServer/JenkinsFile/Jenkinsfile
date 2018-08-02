@@ -1,6 +1,6 @@
 	node  {
 
-	mvnHome = tool 'maven_3.3.9'
+	mvnHome = tool 'mvn_3.5.4'
 
 
 	echo "PATH = ${PATH}"
