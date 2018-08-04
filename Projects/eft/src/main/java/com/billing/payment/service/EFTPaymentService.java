@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.billing.payment.bean.Payment;
 import com.billing.payment.dao.EFTPaymentDao;
 
-@CrossOrigin(origins = "http://localhost:3335")
+@CrossOrigin
 @RestController
 public class EFTPaymentService {
 	
