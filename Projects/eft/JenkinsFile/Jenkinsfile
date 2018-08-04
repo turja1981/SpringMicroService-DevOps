@@ -17,7 +17,7 @@ node {
 
 		sh "cp Projects/eft/target/*.jar Projects/eft/dockerfile/"
 		dir ('Projects/eft/dockerfile') {
-			defeftApp = docker.build("int_region/eft-service:${env.BUILD_ID}")
+			def eftApp = docker.build("int_region/eft-service:${env.BUILD_ID}")
 		}
 	}
 
