@@ -115,7 +115,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.billing.payment.EftApplication</mainClass>
+					<mainClass>com.billing.payment.eft.EftApplication</mainClass>
 					<addResources>true</addResources>
 				</configuration>
 				<executions>
