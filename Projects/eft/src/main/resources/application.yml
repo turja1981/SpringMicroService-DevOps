@@ -1,5 +1,5 @@
 server:
-  port: 3333   #default port where the service will be started
+  port: 3335   #default port where the service will be started
  
 eureka:         #tells about the Eureka server details and its refresh time
   instance:
@@ -28,5 +28,5 @@ management:
  
 logging:
   level:
-    com.billing.addPayment: DEBUG
+    com.billing.payment: DEBUG
     
