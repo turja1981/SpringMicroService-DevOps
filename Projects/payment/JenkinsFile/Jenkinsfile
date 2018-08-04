@@ -28,12 +28,5 @@ node {
 		sh 'sleep 10'
 	}
 
-	stage('Integration Testing & Code Analysis') {
-		dir ('Projects/payment') {
-			withSonarQubeEnv('sonar_QB') { sh "mvn test sonar:sonar -Dsonar.login=sonar -Dsonar.password=sonar" }
-			//generate cucumber reports
-			cucumber '**/target/*.json'
 
-		}
-	}
 }
