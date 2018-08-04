@@ -5,20 +5,16 @@
 <title>Home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<link rel="stylesheet"
-	href="https://bootswatch.com/4/pulse/bootstrap.css" media="screen">
-<link rel="stylesheet"
-	href="https://bootswatch.com/4/pulse/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.css" media="screen">
+<link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 <script src="main.js"></script>
 
 
@@ -27,73 +23,141 @@
 </head>
 <body ng-app="myApp" ng-controller="myController">
 
-	<div class="bs-component">
-		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-			<a class="navbar-brand" href="#">Policy Payment</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarColor01" aria-controls="navbarColor01"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarColor01">
-				<div class="row">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a class="nav-link" href="#">Home<span
-								class="sr-only">(current)</span></a></li>
-					</ul>
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a class="nav-link"
-							href="search.html">Search<span class="sr-only"></span></a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</div>
+	<nav class="navbar navbar-expand-lg  navbar-dark bg-primary" style="height: 40px">
+		<a class="navbar-brand" href="#">Farmers Insurance</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+				<span style="color: white">Find a Customer: </span> <input class="form-control mr-sm-2" type="search" placeholder="Policy # " ng-model="searchPolicyNumber"  aria-label="Search">
+				<button type="submit" class="btn btn-primary" ng-click="searchCustomer(searchPolicyNumber)" type="submit">Search</button>
+			</form>
+		</div>
+	</nav>
+	<h3 align="center" ><span class="badge badge-secondary">Automatic Payments Set Up</span></h3>
 	<div class="container" align="center">
 		<div class="row">
-			<div class="col-md-10">
-				<legend>Payment Form</legend>
-				<form class="needs-validation" novalidate>
-					<div class="form-group" align="center">
-						<table border="0" class="table">
+			<div class="col-md-12">
+
+				<nav class="navbar navbar-dark bg-primary" style="height:5px">
+					<div class="navbar-brand" style="color: white" style="height:5px">Billing Information</div>
+				</nav>
+
+				<div class="form-row" align="left">
+					<table class="table-sm col-md-12">
+						<tr>
+							<td><label>Policy Number:</label></td>
+							<td><label>{{billingInfo.policyNumber}}</label></td>
+							<td><label>Pay Plan:</label></td>
+							<td><label>{{billingInfo.payPlan}}</label></td>
+						</tr>
+						<tr>
+							<td><label>Payment Due:</label></td>
+							<td><label>{{billingInfo.dueAmount}}</label></td>
+							<td><label>Account Balance:</label></td>
+							<td><label>{{billingInfo.accountBalance}}</label></td>
+						</tr>
+						<tr>
+							<td><label>First Name:</label></td>
+							<td><label>{{billingInfo.firstName}}</label></td>
+							<td><label>Last Name:</label></td>
+							<td><label>{{billingInfo.lastName}}</label></td>
+						</tr>
+						<tr>
+							<td><label>Billing Address Line:</label></td>
+							<td><label>{{billingInfo.addressLine1}}</label></td>
+							<td><label>Billing City:</label></td>
+							<td><label>{{billingInfo.city}}</label></td>
+						</tr>
+						<tr>
+							<td><label>Billing State:</label></td>
+							<td><label>{{billingInfo.state}}</label></td>
+							<td><label>Billing ZipCode:</label></td>
+							<td><label>{{billingInfo.zip}}</label></td>
+						</tr>
+
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container " align="center">
+		<div class="row">
+			<div class="col-md-12">
+				<nav class="navbar navbar-expand-lg  navbar-dark bg-primary" style="height: 20px">
+					<a class="navbar-brand" style="color: white" href="#" data-toggle="collapse" data-target="#navbarTogglerDemo01">Electronic Fund Transfer Authorization</a>
+				</nav>
+				<form class="needs-validation collapse" id="navbarTogglerDemo01" novalidate>
+					<div class="form-group" align="left">
+						<table class="table-sm col-md-5	">
 							<tr>
-								<td><label>First Name:</label></td>
-								<td><input type="text" class="form-control" size="20"
-									maxlength="20" placeholder="Enter FirstName"
-									ng-model="paymentDetail.firstName" name="firstName" /></td>
-								<td><label>Last Name:</label></td>
-								<td><input type="text" class="form-control" size="20"
-									maxlength="20" placeholder="Enter LastName"
-									ng-model="paymentDetail.lastName" name="lastName"></td>
+								<td><label>Bank Holder Name</label></td>
+								<td><input type="text" class="form-control" size="20" maxlength="20" placeholder="Bank Holder Name" ng-model="billingInfo.bankHolderName" /></td>
 							</tr>
 							<tr>
-								<td><label>Policy Number:</label></td>
-								<td><input type="text" class="form-control" size="20"
-									maxlength="20" placeholder="Enter Policy Number"
-									ng-model="paymentDetail.policyNumber" name="policyNumber"></td>
-								<td><label>Payment Amount:</label></td>
-								<td><input type="text" class="form-control" size="20"
-									maxlength="20" placeholder="Enter Payment Amount"
-									ng-model="paymentDetail.amount" name="amount"></td>
+							<tr>
+								<td><label>Bank Account Number:</label></td>
+								<td><input type="text" class="form-control" size="20" maxlength="20" placeholder="Bank Account Number" ng-model="billingInfo.bankAccountNo" /></td>
 							</tr>
+							<tr>
+								<td><label>Account Type:</label></td>
+								<td><input type="text" class="form-control" size="20" maxlength="20" placeholder="Account Type" ng-model="billingInfo.accountType"></td>
+							</tr>
+							<tr>
+								<td><label>Bank Name:</label></td>
+								<td><input type="text" class="form-control" size="20" maxlength="20" placeholder="Bank Name" ng-model="billingInfo.bankName" /></td>
+							</tr>
+							<tr>
 						</table>
-						<div class="col-lg-1">
-							<button type="submit" class="btn btn-primary"
-								ng-click="sendPayment(paymentDetail)" name="save">Save</button>
+						<div class="col-lg-7" align="center">
+							<button type="submit" class="btn btn-primary" ng-click="sendEFTPayment(billingInfo)">Save</button>
 						</div>
 					</div>
 				</form>
-
 			</div>
 		</div>
 	</div>
-	<div class="container" align="center">
-		<div class="row" ng-if="paymentDetail.status" >
-			<h4>Payment Status :  <span class="label label-success"  id="status">{{paymentDetail.status}}</span></h4>
-		</div>
-		<div class="row" ng-if="paymentDetail.id">
-			<h4>Payment Id:  <span class="label label-success" id="id">{{paymentDetail.id}}</span></h4>
+	<p></p>
+	<div class="container " align="center">
+		<div class="row">
+			<div class="col-md-12">
+				<nav class="navbar navbar-expand-lg  navbar-dark bg-primary" style="height: 20px">
+					<a class="navbar-brand" style="color: white" href="#" data-toggle="collapse" data-target="#navbarTogglerDemo02">Credit/Debit Card Authorization</a>
+				</nav>
+				<form class="needs-validation collapse" novalidate id="navbarTogglerDemo02">
+					<div class="form-group " align="left">
+						<table class="table-sm col-md-5">
+							<tr>
+								<td><label>Card Holder Name:</label></td>
+								<td><input type="text" class="form-control" size="20" maxlength="20" placeholder="Card Holder Name" ng-model="billingInfo.cardHolderName" /></td>
+							</tr>
+							<tr>
+								<td><label>Credit/Debit Card Number:</label></td>
+								<td><input type="text" class="form-control" size="20" maxlength="20" placeholder="Card Number" ng-model="billingInfo.cardNo"></td>
+							</tr>
+							<tr>
+								<td><label>Expiration Date:</label></td>
+								<td><input type="date" class="form-control" size="20" maxlength="20" placeholder="Expiration Date" ng-model="billingInfo.expirationDate" /></td>
+							</tr>
+							<tr>
+								<td><label>Card Holder ZipCode:</label></td>
+								<td><input type="text" class="form-control" size="20" maxlength="20" placeholder="Card ZipCode" ng-model="billingInfo.cardZip"></td>
+							</tr>
+							<tr>
+								<td><label>Billing Due Day:</label></td>
+								<td><input type="text" class="form-control" size="20" maxlength="20" placeholder="Billing Due Day" ng-model="billingInfo.dueDate" /></td>
+							</tr>
+						</table>
+						<div class="col-lg-7" align="center">
+							<button type="submit" class="btn btn-primary" ng-click="sendCardPayment(billingInfo)">Save</button>
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 </body>

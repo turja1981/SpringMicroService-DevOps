@@ -12,7 +12,7 @@ public class Payment {
 	
 	private String status ;
 	
-	private String payplan ;
+	private String payPlan ;
 	
 	private double dueAmount ;
 	
@@ -28,7 +28,7 @@ public class Payment {
 	
 	private String bankHolderName ;
 	
-	private String bankAcctNo ;
+	private String bankAccountNo ;
 	
 	private String bankName ;
 	
@@ -47,12 +47,12 @@ public class Payment {
 	
 	
 	
-	public String getPayplan() {
-		return payplan;
+	public String getPayPlan() {
+		return payPlan;
 	}
 
-	public void setPayplan(String payplan) {
-		this.payplan = payplan;
+	public void setPayplan(String payPlan) {
+		this.payPlan = payPlan;
 	}
 
 	public double getDueAmount() {

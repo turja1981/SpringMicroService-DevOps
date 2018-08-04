@@ -1,17 +1,15 @@
 /**
  * 
  */
-
 var app = angular.module("myApp", []);
 
 app.controller("myController", function($scope, $http, $location) {
 
-	$scope.sendPayment = function(paymentDetail) {
-		$http.post("http://API-Gateway:8084/addpayment/sendPayment",
-				JSON.stringify(paymentDetail)).then(function(response) {
+	$scope.searchCustomer = function(searchPolicyNumber) {
+		$http.get("http://172.18.0.6:3334/payments/" + searchPolicyNumber).then(function(response) {
 			if (response.data) {
 				console.log(response.data);
-				$scope.paymentDetail = eval(response.data);
+				$scope.billingInfo = eval(response.data);
 			}
 		});
 	}
