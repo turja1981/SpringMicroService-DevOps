@@ -24,7 +24,7 @@ node {
 
 	stage ('Run Docker Image') {
 
-		docker.image("int_region/eft-service:${env.BUILD_ID}").run('-p 3335:3335 -h eft --name eft --network  docknet --ip=172.18.0.7')
+		docker.image("int_region/eft-service:${env.BUILD_ID}").run('-p 3336:3336 -h eft --name eft --network  docknet --ip=172.18.0.7')
 		sh 'sleep 10'
 	}
 
