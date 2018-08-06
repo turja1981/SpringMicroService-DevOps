@@ -10,21 +10,21 @@ node {
 
 	stage('Build') {
 
-		dir ('Projects/eft') { sh "mvn clean install -Dmaven.test.skip=true " }
+		dir ('Projects/card') { sh "mvn clean install -Dmaven.test.skip=true " }
 	}
 
 	stage('Create Docker Image') {
 
 		sh "cp Projects/card/target/*.jar Projects/card/dockerfile/"
 		dir ('Projects/card/dockerfile') {
-			def eftApp = docker.build("int_region/eft-service:${env.BUILD_ID}")
+			def cardApp = docker.build("int_region/eft-service:${env.BUILD_ID}")
 		}
 	}
 
 
 	stage ('Run Docker Image') {
 
-		docker.image("int_region/eft-service:${env.BUILD_ID}").run('-p 3337:3337 -h eft --name eft --network  docknet --ip=172.18.0.8')
+		docker.image("int_region/eft-service:${env.BUILD_ID}").run('-p 3337:3337 -h card --name card --network  docknet --ip=172.18.0.8')
 		sh 'sleep 10'
 	}
 
