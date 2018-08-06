@@ -6,29 +6,41 @@ var app = angular.module("myApp", []);
 app.controller("myController", function($scope, $http, $location) {
 	var headers = {
 
-			'Content-Type': 'application/json',
+		'Content-Type' : 'application/json',
 
-		};
+	};
 
 	$scope.searchCustomer = function(searchPolicyNumber) {
 
-		$http.get("http://payment/payments/" + searchPolicyNumber).then(function(response) {
-			if (response.data) {
-				console.log(response.data);
-				$scope.billingInfo = eval(response.data);
-			}
-		});
+		$http.get("http://payment/payments/" + searchPolicyNumber).then(
+				function(response) {
+					if (response.data) {
+						console.log(response.data);
+						$scope.billingInfo = eval(response.data);
+					}
+				});
 	}
-	
+
 	$scope.sendEFTPayment = function(billingInfo) {
 
-		$http.post("http://eft/setup", angular.toJson($scope.billingInfo) , headers).then(function(response) {
+		$http.post("http://eft/setup", angular.toJson($scope.billingInfo),
+				headers).then(function(response) {
 			if (response.data) {
 				console.log(response.data);
 				$scope.msg = eval(response.data);
 			}
 		});
-	}	
+	}
+	$scope.sendCardPayment = function(billingInfo) {
+
+		$http.post("http://card/setup", angular.toJson($scope.billingInfo),
+				headers).then(function(response) {
+			if (response.data) {
+				console.log(response.data);
+				$scope.msg = eval(response.data);
+			}
+		});
+	}
 });
 
 app.controller("showController", [
