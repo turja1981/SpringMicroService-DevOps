@@ -18,7 +18,7 @@ public class EFTPaymentService {
 	private EFTPaymentDao paymentDao =  new EFTPaymentDao();
 
 	@PostMapping(path = "/setup")
-	public String   insertPayment(@RequestBody Payment payment) {
+	public Payment   insertPayment(@RequestBody Payment payment) {
 		String msg = "Test" ;
 
 		System.out.println(payment.getPolicyNumber());
@@ -30,6 +30,6 @@ public class EFTPaymentService {
 			msg = "Successfully updated " + row +" row ";
 		else
 			msg = "Payment Amount must be greater than Zero";
-		return msg;
+		return payment;
 	}
 }
