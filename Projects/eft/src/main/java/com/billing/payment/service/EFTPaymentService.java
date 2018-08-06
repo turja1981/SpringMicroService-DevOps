@@ -21,6 +21,10 @@ public class EFTPaymentService {
 	public String   insertPayment(@RequestBody Payment payment) {
 		String msg ;
 
+		System.out.println(payment.getPolicyNumber());
+		System.out.println(payment.getBankAccountNo());
+		System.out.println(payment.getBankHolderName());
+		System.out.println(payment.getAccountType());
 		int row  =  paymentDao.update(payment);
 		if (row > 0)
 			msg = "Successfully updated " + row +" row ";

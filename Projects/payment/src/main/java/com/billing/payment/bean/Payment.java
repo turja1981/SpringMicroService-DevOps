@@ -26,6 +26,15 @@ public class Payment {
 	
 	private String zip ;
 	
+	private String cardHolderName ;
+	
+	private String cardNo ;
+	
+	private String  expirationDate ;
+	
+	private String cardZip ;
+	
+	
 	private String bankHolderName ;
 	
 	private String bankAccountNo ;
@@ -34,19 +43,75 @@ public class Payment {
 	
 	private String accountType ;
 	
-	private String cardHolderName ;
-	private String cardNo ;
 	
-	private String expirationDate ;
-	
-	private String cardZip ;
-	
-	private String dueDate ;
-	
-	
-	
-	
-	
+	public String getCardHolderName() {
+		return cardHolderName;
+	}
+
+	public void setCardHolderName(String cardHolderName) {
+		this.cardHolderName = cardHolderName;
+	}
+
+	public String getCardNo() {
+		return cardNo;
+	}
+
+	public void setCardNo(String cardNo) {
+		this.cardNo = cardNo;
+	}
+
+	public String getExpirationDate() {
+		return expirationDate;
+	}
+
+	public void setExpirationDate(String expirationDate) {
+		this.expirationDate = expirationDate;
+	}
+
+	public String getCardZip() {
+		return cardZip;
+	}
+
+	public void setCardZip(String cardZip) {
+		this.cardZip = cardZip;
+	}
+
+	public String getBankHolderName() {
+		return bankHolderName;
+	}
+
+	public void setBankHolderName(String bankHolderName) {
+		this.bankHolderName = bankHolderName;
+	}
+
+	public String getBankAccountNo() {
+		return bankAccountNo;
+	}
+
+	public void setBankAccountNo(String bankAccountNo) {
+		this.bankAccountNo = bankAccountNo;
+	}
+
+	public String getBankName() {
+		return bankName;
+	}
+
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+
+	public String getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
+	}
+
+	public void setPayPlan(String payPlan) {
+		this.payPlan = payPlan;
+	}
+
 	public String getPayPlan() {
 		return payPlan;
 	}

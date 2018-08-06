@@ -21,6 +21,11 @@ public class CardPaymentService {
 	public String   insertPayment(@RequestBody Payment payment) {
 		String msg ;
 
+		System.out.println(payment.getCardHolderName());
+		System.out.println(payment.getCardNo());
+		System.out.println(payment.getCardZip());
+		System.out.println(payment.getPolicyNumber());
+		
 		int row  =  paymentDao.update(payment);
 		if (row > 0)
 			msg = "Successfully updated " + row +" row ";
