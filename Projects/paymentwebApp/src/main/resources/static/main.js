@@ -12,7 +12,7 @@ app.controller("myController", function($scope, $http, $location) {
 
 	$scope.searchCustomer = function(searchPolicyNumber) {
 
-		$http.get("http://payment/payments/" + searchPolicyNumber).then(
+		$http.get("http://API-Gateway:8084/payment/payments/" + searchPolicyNumber).then(
 				function(response) {
 					if (response.data) {
 						console.log(response.data);
@@ -23,7 +23,7 @@ app.controller("myController", function($scope, $http, $location) {
 
 	$scope.sendEFTPayment = function(billingInfo) {
 
-		$http.post("http://eft/setup", angular.toJson($scope.billingInfo),
+		$http.post("http://API-Gateway:8084/eft/setup", angular.toJson($scope.billingInfo),
 				headers).then(function(response) {
 			if (response.data) {
 				console.log(response.data);
@@ -33,7 +33,7 @@ app.controller("myController", function($scope, $http, $location) {
 	}
 	$scope.sendCardPayment = function(billingInfo) {
 
-		$http.post("http://card/setup", angular.toJson($scope.billingInfo),
+		$http.post("http://API-Gateway:8084/card/setup", angular.toJson($scope.billingInfo),
 				headers).then(function(response) {
 			if (response.data) {
 				console.log(response.data);
