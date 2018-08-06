@@ -1,14 +1,13 @@
-package com.billing.payment.service;
+package com.billing.payment.eft.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.billing.payment.bean.Payment;
-import com.billing.payment.dao.EFTPaymentDao;
+import com.billing.payment.eft.bean.Payment;
+import com.billing.payment.eft.dao.EFTPaymentDao;
 
 @CrossOrigin
 @RestController
@@ -18,7 +17,7 @@ public class EFTPaymentService {
 	private EFTPaymentDao paymentDao =  new EFTPaymentDao();
 
 	@PostMapping(path = "/setup")
-	public Payment   insertPayment(@RequestBody Payment payment) {
+	public Payment  insertPayment(@RequestBody Payment payment) {
 		String msg = "Test" ;
 
 		System.out.println(payment.getPolicyNumber());

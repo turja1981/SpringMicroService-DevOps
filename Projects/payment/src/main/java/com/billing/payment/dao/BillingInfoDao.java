@@ -43,7 +43,7 @@ class PaymentMapper implements RowMapper<Payment> {
 		payment.setStatus(rs.getString("STATUS"));
 		payment.setDueAmount(rs.getDouble("DUE_AMOUNT"));
 		payment.setAccountBalance(rs.getDouble("ACCOUNT_BALANCE"));
-		payment.setPayplan(rs.getString("PAY_PLAN"));
+		payment.setPayPlan(rs.getString("PAY_PLAN"));
 		payment.setAddressLine1(rs.getString("ADDRESSlINE_1"));
 		payment.setState(rs.getString("STATE"));
 		payment.setCity(rs.getString("CITY"));

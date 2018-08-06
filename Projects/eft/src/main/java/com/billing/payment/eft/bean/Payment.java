@@ -1,4 +1,4 @@
-package com.billing.payment.bean;
+package com.billing.payment.eft.bean;
 
 public class Payment {
 	

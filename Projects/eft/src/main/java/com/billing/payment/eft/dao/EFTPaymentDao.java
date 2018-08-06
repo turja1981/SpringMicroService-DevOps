@@ -1,18 +1,15 @@
-package com.billing.payment.dao;
+package com.billing.payment.eft.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import com.billing.payment.bean.Payment;
+import com.billing.payment.eft.bean.Payment;
 @Repository
 public class EFTPaymentDao {
 
