@@ -23,8 +23,7 @@ app.controller("myController", function($scope, $http, $location) {
 
 	$scope.sendEFTPayment = function(billingInfo) {
 
-		$http.post("http://API-Gateway:8084/eft/setup", angular.toJson($scope.billingInfo),
-				headers).then(function(response) {
+		$http.post("http://API-Gateway:8084/eft/setup", billingInfo).then(function(response) {
 			if (response.data) {
 				console.log(response.data);
 				$scope.msg = eval(response.data);

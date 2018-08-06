@@ -19,7 +19,7 @@ public class EFTPaymentService {
 
 	@PostMapping(path = "/setup")
 	public String   insertPayment(@RequestBody Payment payment) {
-		String msg ;
+		String msg = "Test" ;
 
 		System.out.println(payment.getPolicyNumber());
 		System.out.println(payment.getBankAccountNo());
