@@ -16,7 +16,7 @@ node {
 		}
 	}
 	stage ('Run Docker Image') {
-		docker.image("int_region/payment-web-app:${env.BUILD_ID}").run('-p 3335:3335 -h paymentWeb --name paymentWeb --network  devops_default --ip=172.18.0.7')
+		docker.image("int_region/payment-web-app:${env.BUILD_ID}").run('-p 3340:3340 -h paymentWeb --name paymentWeb --network  docknet --ip=172.18.0.7')
 	}
 	stage('QA Testing & Code Analysis') {
 
