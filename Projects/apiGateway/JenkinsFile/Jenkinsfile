@@ -23,6 +23,6 @@
 		}
 	}
 	stage ('Run Docker Image') {
-		docker.image("int_region/api-gateway:${env.BUILD_ID}").run('-p 8084:8084 -h api-gateway --name api-gateway --network  devops_default --ip 172.18.0.10')
+		docker.image("int_region/api-gateway:${env.BUILD_ID}").run('-p 8084:8084 -h api-gateway --name api-gateway --network  docknet --ip 172.18.0.10')
 	}
 }

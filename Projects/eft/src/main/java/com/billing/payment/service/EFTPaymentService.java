@@ -17,7 +17,7 @@ public class EFTPaymentService {
 	@Autowired
 	private EFTPaymentDao paymentDao =  new EFTPaymentDao();
 
-	@PostMapping(path = "/eft" , consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path = "/setup")
 	public String   insertPayment(@RequestBody Payment payment) {
 		String msg ;
 
