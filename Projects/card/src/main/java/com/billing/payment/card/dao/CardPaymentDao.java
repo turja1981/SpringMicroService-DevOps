@@ -13,7 +13,7 @@ import com.billing.payment.card.bean.Payment;
 @Repository
 public class CardPaymentDao {
 
-	private final static String UPDATE_SQL = "UPDATE payments set CARD_HOLDER_NAME=?,CARD_NO=?,EXPIRATION_DATE=? CARD_ZIP =? where POLICY_NO = ?";
+	private final static String UPDATE_SQL = "UPDATE payments set CARD_HOLDER_NAME=?, CARD_NO=?, EXPIRATION_DATE=? , CARD_ZIP =? where POLICY_NO = ?";
 
 		
 	@Autowired
