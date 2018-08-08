@@ -18,7 +18,7 @@ public class CardPaymentService {
 	private CardPaymentDao paymentDao =  new CardPaymentDao();
 
 	@PostMapping(path = "/setup")
-	public String   insertPayment(@RequestBody Payment payment) {
+	public Payment   insertPayment(@RequestBody Payment payment) {
 		String msg ;
 
 		System.out.println(payment.getCardHolderName());
@@ -31,6 +31,6 @@ public class CardPaymentService {
 			msg = "Successfully updated " + row +" row ";
 		else
 			msg = "Payment Amount must be greater than Zero";
-		return msg;
+		return payment;
 	}
 }
