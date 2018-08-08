@@ -12,7 +12,6 @@ import com.tcs.apiGateway.filter.PreFilter;
 import com.tcs.apiGateway.filter.RouteFilter;
 
 @EnableZuulProxy
-@EnableEurekaClient
 @SpringBootApplication
 public class ApiGatewayApplication {
 
