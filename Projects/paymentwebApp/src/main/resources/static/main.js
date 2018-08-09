@@ -22,35 +22,22 @@ app.controller("myController", function($scope, $http, $location) {
 	}
 
 	$scope.sendEFTPayment = function(billingInfo) {
-
-		$http.post("http://API-Gateway:8084/eft/setup", billingInfo).then(function(response) {
+		console.log(billingInfo);
+		$http.post("http://API-Gateway:8084/eft/setup",billingInfo, headers).then(function(response) {
 			if (response.data) {
 				console.log(response.data);
-				$scope.msg = eval(response.data);
+				$scope.billingInfo = eval(response.data);
 			}
 		});
 	}
 	$scope.sendCardPayment = function(billingInfo) {
 
-		$http.post("http://API-Gateway:8084/card/setup", angular.toJson($scope.billingInfo),
-				headers).then(function(response) {
+		$http.post("http://API-Gateway:8084/card/setup", billingInfo, headers).then(function(response) {
 			if (response.data) {
 				console.log(response.data);
-				$scope.msg = eval(response.data);
+				$scope.billingInfo = eval(response.data);
 			}
 		});
 	}
 });
 
-app.controller("showController", [
-		'$scope',
-		'$http',
-		'$location',
-		function($scope, $http, $location) {
-			$http.get("http://API-Gateway:8084/showpayment/payments").then(
-					function(response) {
-						$scope.allPayment = eval(response.data);
-						console.log(response.data);
-					});
-
-		} ]);

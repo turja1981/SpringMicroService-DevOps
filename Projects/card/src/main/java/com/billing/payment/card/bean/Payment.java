@@ -42,6 +42,18 @@ public class Payment {
 	private String bankName ;
 	
 	private String accountType ;
+	
+	private String bankRoutingNo ;
+	
+	
+
+	public String getBankRoutingNo() {
+		return bankRoutingNo;
+	}
+
+	public void setBankRoutingNo(String bankRoutingNo) {
+		this.bankRoutingNo = bankRoutingNo;
+	}
 
 	public int getId() {
 		return Id;

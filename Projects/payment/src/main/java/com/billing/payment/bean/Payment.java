@@ -42,6 +42,8 @@ public class Payment {
 	private String bankName ;
 	
 	private String accountType ;
+	
+	private String DueDate ;
 
 	public int getId() {
 		return Id;
@@ -201,6 +203,14 @@ public class Payment {
 
 	public void setAccountType(String accountType) {
 		this.accountType = accountType;
+	}
+
+	public String getDueDate() {
+		return DueDate;
+	}
+
+	public void setDueDate(String dueDate) {
+		DueDate = dueDate;
 	}
 	
 	
