@@ -1,5 +1,6 @@
-Feature: User can verify all the payments from the Summary page.
+Feature: Find Billing Details from the  Policty No in Account Set up Screen .
   
- Scenario: User browse the Payment Summary page to view all payments
-	 When User browse the Payment Summary page
-	 Then User finds all the successful payments
+ Scenario: User enters Policy Number and get the Billing Details.
+ 
+   When  User enters PolicyNumber as 123 
+   Then  Billing details populated with firstName =TURJA lastName=BANERJEE , city=LOS ANGELES and zip=96745
