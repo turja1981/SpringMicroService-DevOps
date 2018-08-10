@@ -31,7 +31,7 @@ public class CardPaymentStepDefinition extends SpringBootBaseIntegrationTest {
 	}
 	
 
-		//User enters Card Holder Name =John Smith , Card No =33333334444 , Expiration Date =08/20 , ZipCode =96713
+
 	@When("User enters Card Holder Name =(.*) , Card No =(.*) , Expiration Date =(.*) and ZipCode =(.*)")
 	public void user_submit_payment_amount(String cardHolderName , String cardNo , String expirationDate , String cardZip) {
 
