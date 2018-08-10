@@ -29,7 +29,7 @@ node {
 	}
 	stage('Integration Testing & Code Analysis') {
 
-		dir ('Projects/addPayment') {
+		dir ('Projects/card') {
 			withSonarQubeEnv('sonar_QB') { sh "mvn test sonar:sonar -Dsonar.login=sonar -Dsonar.password=sonar" }
 			cucumber '**/target/*.json'
 		}

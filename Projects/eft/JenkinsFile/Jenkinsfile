@@ -28,5 +28,11 @@ node {
 		sh 'sleep 10'
 	}
 
+	stage('Integration Testing & Code Analysis') {
 
+		dir ('Projects/eft') {
+			withSonarQubeEnv('sonar_QB') { sh "mvn test sonar:sonar -Dsonar.login=sonar -Dsonar.password=sonar" }
+			cucumber '**/target/*.json'
+		}
+	}
 }
