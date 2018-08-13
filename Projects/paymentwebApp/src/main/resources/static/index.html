@@ -25,24 +25,36 @@
 
 	<nav class="navbar navbar-expand-lg  navbar-dark bg-primary" style="height: 40px">
 		<a class="navbar-brand" href="#">Farmers Insurance</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+			aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
-				<span style="color: white">Find a Customer: </span> <input class="form-control mr-sm-2" name ="txt_search_customer" type="search" placeholder="Policy # " ng-model="searchPolicyNumber"  aria-label="Search">
-				<button type="submit" class="btn btn-primary" name="btn_search_customer"  ng-click="searchCustomer(searchPolicyNumber)" type="submit">Search</button>
+				<span style="color: white">Find a Customer: </span> <input class="form-control mr-sm-2"
+					name="txt_search_customer" type="search" placeholder="Policy # " ng-model="searchPolicyNumber"
+					aria-label="Search">
+				<button type="submit" class="btn btn-primary" name="btn_search_customer"
+					ng-click="searchCustomer(searchPolicyNumber)" type="submit">Search</button>
 			</form>
 		</div>
 	</nav>
-	<h3 align="center" ><span class="badge badge-secondary">Automatic Payments Set Up</span></h3>
+	<h3 align="center">
+		<span class="badge badge-secondary">Automatic Payments Set Up</span>
+	</h3>
+	<div class="container col-md-5" align="center" ng-if="billingInfo.status">
+		<div class="alert alert-success" role="alert">
+			<label name="lbl_status" for="billingInfo.status">{{billingInfo.status}}</label>
+		</div>
+	</div>
 	<div class="container" align="center">
 		<div class="row">
 			<div class="col-md-12">
 
-				<nav class="navbar navbar-dark bg-primary" style="height:5px">
+				<nav class="navbar navbar-dark bg-primary" style="height: 5px">
 					<div class="navbar-brand" style="color: white" style="height:5px">Billing Information</div>
 				</nav>
 
@@ -85,40 +97,57 @@
 		</div>
 	</div>
 
-	<div class="container " align="center" >
+	<div class="container " align="center">
 		<div class="row">
 			<div class="col-md-12">
-				<nav class="navbar navbar-expand-lg  navbar-dark bg-primary" style="height: 20px" name="eftSection">
-					<a class="navbar-brand" style="color: white" href="#" data-toggle="collapse" id="eftElements" data-target="#navbarTogglerDemo01">Electronic Fund Transfer Authorization</a>
+				<nav class="navbar navbar-expand-lg  navbar-dark bg-primary" style="height: 20px"
+					name="eftSection">
+					<a class="navbar-brand" style="color: white" href="#" data-toggle="collapse" id="eftElements"
+						data-target="#navbarTogglerDemo01">Electronic Fund Transfer Authorization</a>
 				</nav>
 				<form class="needs-validation collapse" id="navbarTogglerDemo01" novalidate>
 					<div class="form-group" align="left">
 						<table class="table-sm col-md-5	">
 							<tr>
 								<td><label>Bank Holder Name</label></td>
-								<td><input type="text"  name="txt_bankHolderName" class="form-control" size="20" maxlength="20" placeholder="Bank Holder Name" ng-model="billingInfo.bankHolderName" /></td>
+								<td><input type="text" name="txt_bankHolderName" class="form-control" size="20"
+									maxlength="20" placeholder="Bank Holder Name" ng-model="billingInfo.bankHolderName" /></td>
 							</tr>
 							<tr>
 							<tr>
 								<td><label>Bank Account Number:</label></td>
-								<td><input type="text" name="txt_bankAccountNo" class="form-control" size="20" maxlength="20" placeholder="Bank Account Number" ng-model="billingInfo.bankAccountNo" /></td>
+								<td><input type="text" name="txt_bankAccountNo" class="form-control" size="20"
+									maxlength="20" placeholder="Bank Account Number" ng-model="billingInfo.bankAccountNo" /></td>
 							</tr>
 							<tr>
 								<td><label>Account Type:</label></td>
-								<td><input type="text" name="txt_accountType" class="form-control" size="20" maxlength="20" placeholder="Account Type" ng-model="billingInfo.accountType"></td>
+								<td>
+									<div class="radio">
+										<label><input type="radio" name="txt_accountType"
+											ng-model="billingInfo.accountType" ng-value="'Savings'">Savings</label>
+									</div>
+									<div class="radio">
+										<label><input type="radio" name="txt_accountType"
+											ng-model="billingInfo.accountType" ng-value="'Checking'">Checking</label>
+									</div>
+								</td>
 							</tr>
 							<tr>
 								<td><label>Routing No:</label></td>
-								<td><input type="text" name="txt_bankRoutingNo" class="form-control" size="20" maxlength="20" placeholder="Routing No" ng-model="billingInfo.bankRoutingNo"></td>
-							</tr>							
+								<td><input type="text" name="txt_bankRoutingNo " class="form-control" size="20"
+									maxlength="20" placeholder="Routing No" ng-model="billingInfo.bankRoutingNo"
+									ng-blur="getBankName(billingInfo.bankRoutingNo)"></td>
+							</tr>
 							<tr>
 								<td><label>Bank Name:</label></td>
-								<td><input type="text" name="txt_bankName" class="form-control" size="20" maxlength="20" placeholder="Bank Name" ng-model="billingInfo.bankName" /></td>
+								<td><input type="text" name="txt_bankName" class="form-control" size="20"
+									maxlength="20" placeholder="Bank Name" ng-model="billingInfo.bankName" readonly="readonly" /></td>
 							</tr>
 							<tr>
 						</table>
 						<div class="col-lg-7" align="center">
-							<button type="submit" name="btn_sendEFTPayment" name="txt_bankHolderName" lass="btn btn-primary" ng-click="sendEFTPayment(billingInfo)">Save</button>
+							<button type="submit" name="btn_sendEFTPayment" class="btn btn-primary"
+								ng-click="sendEFTPayment(billingInfo)">Save</button>
 						</div>
 					</div>
 				</form>
@@ -129,31 +158,38 @@
 	<div class="container " align="center">
 		<div class="row">
 			<div class="col-md-12">
-				<nav class="navbar navbar-expand-lg  navbar-dark bg-primary" style="height: 20px" name="cardSection">
-					<a class="navbar-brand" style="color: white" href="#" id="cardElements" data-toggle="collapse" data-target="#navbarTogglerDemo02">Credit/Debit Card Authorization</a>
+				<nav class="navbar navbar-expand-lg  navbar-dark bg-primary" style="height: 20px"
+					name="cardSection">
+					<a class="navbar-brand" style="color: white" href="#" id="cardElements" data-toggle="collapse"
+						data-target="#navbarTogglerDemo02">Credit/Debit Card Authorization</a>
 				</nav>
 				<form class="needs-validation collapse" novalidate id="navbarTogglerDemo02">
 					<div class="form-group " align="left">
 						<table class="table-sm col-md-5">
 							<tr>
 								<td><label>Card Holder Name:</label></td>
-								<td><input type="text" name="txt_cardHolderName"  class="form-control" size="20" maxlength="20" placeholder="Card Holder Name" ng-model="billingInfo.cardHolderName" /></td>
+								<td><input type="text" name="txt_cardHolderName" class="form-control" size="20"
+									maxlength="20" placeholder="Card Holder Name" ng-model="billingInfo.cardHolderName" /></td>
 							</tr>
 							<tr>
 								<td><label>Credit/Debit Card Number:</label></td>
-								<td><input type="text" name="txt_cardNo"  class="form-control" size="20" maxlength="20" placeholder="Card Number" ng-model="billingInfo.cardNo"></td>
+								<td><input type="text" name="txt_cardNo" class="form-control" size="20" maxlength="20"
+									placeholder="Card Number" ng-model="billingInfo.cardNo"></td>
 							</tr>
 							<tr>
 								<td><label>Expiration Date:</label></td>
-								<td><input type="txt" name="txt_expirationDate" class="form-control" size="20" maxlength="20" placeholder="Expiration Date" ng-model="billingInfo.expirationDate" /></td>
+								<td><input type="txt" name="txt_expirationDate" class="form-control" size="20"
+									maxlength="20" placeholder="MM/YYYY" ng-model="billingInfo.expirationDate" /></td>
 							</tr>
 							<tr>
 								<td><label>Card Holder ZipCode:</label></td>
-								<td><input type="text" name="txt_cardZip" class="form-control" size="20" maxlength="20" placeholder="Card ZipCode" ng-model="billingInfo.cardZip"></td>
+								<td><input type="text" name="txt_cardZip" class="form-control" size="20" maxlength="20"
+									placeholder="Card ZipCode" ng-model="billingInfo.cardZip"></td>
 							</tr>
 						</table>
 						<div class="col-lg-7" align="center">
-							<button type="submit" name="btn_sendCardPayment" class="btn btn-primary" ng-click="sendCardPayment(billingInfo)">Save</button>
+							<button type="submit" name="btn_sendCardPayment" class="btn btn-primary"
+								ng-click="sendCardPayment(billingInfo)">Save</button>
 						</div>
 					</div>
 				</form>

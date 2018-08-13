@@ -41,6 +41,8 @@ public class Payment {
 	
 	private String bankName ;
 	
+	private String bankRoutingNo ;
+	
 	private String accountType ;
 	
 	private String DueDate ;
@@ -211,6 +213,14 @@ public class Payment {
 
 	public void setDueDate(String dueDate) {
 		DueDate = dueDate;
+	}
+
+	public String getBankRoutingNo() {
+		return bankRoutingNo;
+	}
+
+	public void setBankRoutingNo(String bankRoutingNo) {
+		this.bankRoutingNo = bankRoutingNo;
 	}
 	
 	

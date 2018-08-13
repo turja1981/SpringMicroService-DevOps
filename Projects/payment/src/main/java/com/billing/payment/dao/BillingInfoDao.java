@@ -16,7 +16,7 @@ public class BillingInfoDao {
 
 	private final String FETCH_SQL_BY_ID = "select ID, FIRSTNAME, LASTNAME, POLICY_NO,DUE_AMOUNT,PAY_PLAN, "
 			+ "ACCOUNT_BALANCE,ADDRESSlINE_1, STATE, CITY, ZIP , "
-			+ "BANK_HOLDER_NAME , BANK_ACCT_NO , BANK_NAME, "
+			+ "BANK_HOLDER_NAME , BANK_ACCT_NO , BANK_NAME, BANK_ROUTING_NO"
 			+ "CARD_HOLDER_NAME, CARD_NO,EXPIRATION_DATE ,CARD_ZIP,DUE_DATE , ACCOUN_TYPE"
 			+ ",STATUS from payments where POLICY_NO = ?";
 	
@@ -53,11 +53,12 @@ class PaymentMapper implements RowMapper<Payment> {
 		payment.setBankAccountNo(rs.getString("BANK_ACCT_NO"));
 		payment.setBankName(rs.getString("BANK_NAME"));
 		payment.setAccountType(rs.getString("ACCOUN_TYPE"));
+		payment.setBankRoutingNo(rs.getString("BANK_ROUTING_NO"));
 		
 		payment.setCardHolderName(rs.getString("CARD_HOLDER_NAME"));
 		payment.setCardNo(rs.getString("CARD_NO"));
 		payment.setCardZip(rs.getString("CARD_ZIP"));
-		payment.setDueDate(rs.getString("DUE_DATE"));
+		payment.setExpirationDate(rs.getString("EXPIRATION_DATE"));
 
 		return payment;
 	}

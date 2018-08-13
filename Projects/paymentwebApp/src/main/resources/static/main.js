@@ -39,5 +39,15 @@ app.controller("myController", function($scope, $http, $location) {
 			}
 		});
 	}
+
+	$scope.getBankName = function(routingNo) {
+		console.log(routingNo)
+		$http.get("http://API-Gateway:8084/eft/routing/"+ routingNo, headers).then(function(response) {
+			if (response.data) {
+				console.log(response.data);
+				$scope.billingInfo.bankName = response.data.bankName;
+			}
+		});
+	}	
 });
 
