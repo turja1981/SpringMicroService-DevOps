@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.billing.payment.eft.bean.BankDetails;
 import com.billing.payment.eft.bean.Payment;
 import com.billing.payment.eft.dao.EFTPaymentDao;
 
@@ -27,17 +28,18 @@ public class EFTPaymentService {
 		System.out.println(payment.getBankHolderName());
 		System.out.println(payment.getAccountType());
 		int row  =  eftDao.update(payment);
-		payment.setStatus("EFT details were Succfessfully Updated");
+		payment.setStatus("EFT details were Successfully Updated");
 		return payment;
 	}
 	
 	@GetMapping(path = "/routing/{rtNo}")
-	public String getBankNamefromRoutingNo(@PathVariable String rtNo) {
-		String bankName  ;
+	public BankDetails getBankNamefromRoutingNo(@PathVariable String rtNo) {
+		BankDetails bankDtls  = new  BankDetails();
 		
-		bankName = eftDao.findBankNameByRoutingNo(rtNo);
+		bankDtls.setBankName(eftDao.findBankNameByRoutingNo(rtNo));
+		bankDtls.setBankRouting(rtNo);
 
-		return bankName;
+		return bankDtls;
 	}
 
 }

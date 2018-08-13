@@ -14,5 +14,5 @@ Feature: EFT Payment Set up for the Policy .
  Scenario: User enters EFT Bank details and get the success response.
  	 Given User finds the Billing details with PolicyNo = 123   
 	 When  User enters Bank Holder Name=John Smith , Bank Account No=12121212 , Account Type=Saving and Bank Name= Bank of XYZ
-	 Then  Response status should contain the message = EFT details were Succfessfully Updated
+	 Then  Response status should contain the message = EFT details were Successfully Updated
 	 And   User receives response with HTTP status code = 200 for the payment	

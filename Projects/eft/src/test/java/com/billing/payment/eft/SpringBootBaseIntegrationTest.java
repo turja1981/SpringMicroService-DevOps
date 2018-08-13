@@ -12,6 +12,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
+import com.billing.payment.eft.bean.BankDetails;
 import com.billing.payment.eft.bean.Payment;
 
 
@@ -69,8 +70,8 @@ public abstract class SpringBootBaseIntegrationTest {
         return returnPayment.getBody() ;
     }
 
-    public String getBankName(final String routingNo ) {
-        return restTemplate.getForEntity(SERVER_URL + ROUTING_ENDPOINT+"/"+routingNo , String.class).getBody();
+    public BankDetails getBankDetails(final String routingNo ) {
+        return restTemplate.getForEntity(SERVER_URL + ROUTING_ENDPOINT+"/"+routingNo , BankDetails.class).getBody();
     }
     
     public Payment findBillingDetails(final String policyNo ) {

@@ -36,7 +36,7 @@ public class EFTPaymentStepDefinition extends SpringBootBaseIntegrationTest {
 		System.out.println("bankRoutingNo :-"+bankRoutingNo);
 		
 		pmt.setBankRoutingNo(bankRoutingNo);
-		String bankName  =  getBankName(bankRoutingNo);
+		String bankName  =  getBankDetails(bankRoutingNo).getBankName();
 		System.out.println(bankName);
 		pmt.setBankName(bankName);
 
