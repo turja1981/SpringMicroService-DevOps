@@ -123,18 +123,18 @@
 								<td><label>Account Type:</label></td>
 								<td>
 									<div class="radio">
-										<label><input type="radio" name="txt_accountType"
+										<label><input type="radio" name="rd_accountType"
 											ng-model="billingInfo.accountType" ng-value="'Savings'">Savings</label>
 									</div>
 									<div class="radio">
-										<label><input type="radio" name="txt_accountType"
+										<label><input type="radio" name="rd_accountType"
 											ng-model="billingInfo.accountType" ng-value="'Checking'">Checking</label>
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<td><label>Routing No:</label></td>
-								<td><input type="text" name="txt_bankRoutingNo " class="form-control" size="20"
+								<td><input type="text" name="txt_bankRoutingNo" class="form-control" size="20"
 									maxlength="20" placeholder="Routing No" ng-model="billingInfo.bankRoutingNo"
 									ng-blur="getBankName(billingInfo.bankRoutingNo)"></td>
 							</tr>
