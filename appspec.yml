@@ -1,5 +1,5 @@
 version: 0.0
 os: linux
 files:
-  - source: ./EurekaServer.jar
+  - source: Project/eurekaServer/target/EurekaServer.jar
     destination: /tmp
