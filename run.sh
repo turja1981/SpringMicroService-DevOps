@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-cd '/tmp'
+cd '/tmp' 
 java -jar EurekaServer.jar
