@@ -3,3 +3,8 @@ os: linux
 files:
   - source: Projects/eurekaServer/target/EurekaServer.jar
     destination: /tmp
+hooks:
+  ApplicationStart:
+    - location: run.sh
+      timeout: 300
+      runas: ubuntu
