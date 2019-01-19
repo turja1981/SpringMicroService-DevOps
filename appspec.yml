@@ -5,6 +5,6 @@ files:
     destination: /tmp
 hooks:
   ApplicationStart:
-    - location: Projects/run.sh
+    - location: run.sh
       timeout: 300
       runas: ubuntu
